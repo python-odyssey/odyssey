@@ -1,0 +1,15 @@
+---
+    environment:
+      matrix:
+      - TOXENV: py36
+      - TOXENV: py38
+    
+    build: off
+    
+    install:
+    - (Invoke-WebRequest -Uri https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py -UseBasicParsing).Content | python
+    - $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+    - poetry install
+    
+    test_script:
+    - pytest

@@ -4,18 +4,31 @@ orbs:
   python: circleci/python@0.2.1
 
 jobs:
-  build-and-test:
-    executor: python/default
+  build-and-test-3.6.9:
+    docker:
+      - image: circleci/python:3.6.9
     steps:
       - checkout
-      - python/load-cache
-      - python/install-deps
-      - python/save-cache
       - run:
-          command: ./manage.py test
-          name: Test
+          name: Install poetry
+          command: curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+      - run:
+          command: poetry install
+          name: Install dependencies
+  build-and-test-3.8.2:
+    docker:
+      - image: circleci/python:3.8.2
+    steps:
+      - checkout
+      - run:
+          name: Install poetry
+          command: curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+      - run:
+          command: poetry install
+          name: Install dependencies
 
 workflows:
   main:
     jobs:
-      - build-and-test
+      - build-and-test-3.6.9
+      - build-and-test-3.8.2

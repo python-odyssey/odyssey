@@ -4,6 +4,7 @@ python:
   - "3.8"
 install:
   - curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+  - source ~/.profile
   - poetry install
 script:
   - pytest

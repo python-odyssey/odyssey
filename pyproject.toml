@@ -2,6 +2,8 @@
 name = "odyssey"
 version = "0.1.0"
 description = ""
+readme = "README.rst"
+license = "MIT"
 authors = ["Justin Sharma <justin.elite@gmail.com>"]
 packages = [
     { include = "odyssey", from = "src" },

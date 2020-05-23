@@ -15,6 +15,9 @@ jobs:
       - run:
           command: poetry install
           name: Install dependencies
+      - run:
+          name: Run tests
+          command: tox
   build-and-test-3-8-2:
     docker:
       - image: circleci/python:3.8.2
@@ -24,8 +27,11 @@ jobs:
           name: Install poetry
           command: curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
       - run:
-          command: poetry install
           name: Install dependencies
+          command: poetry install
+      - run:
+          name: Run tests
+          command: tox
 
 workflows:
   main:

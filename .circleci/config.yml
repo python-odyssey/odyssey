@@ -16,8 +16,11 @@ jobs:
           command: poetry install
           name: Install dependencies
       - run:
+          name: Install poetry for tox
+          command: poetry run pip --disable-pip-version-check install poetry
+      - run:
           name: Run tests
-          command: tox
+          command: poetry run tox
   build-and-test-3-8-2:
     docker:
       - image: circleci/python:3.8.2
@@ -30,8 +33,11 @@ jobs:
           name: Install dependencies
           command: poetry install
       - run:
+          name: Install poetry for tox
+          command: poetry run pip --disable-pip-version-check install poetry
+      - run:
           name: Run tests
-          command: tox
+          command: poetry run tox
 
 workflows:
   main:

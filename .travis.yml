@@ -1,10 +1,17 @@
 language: python
+os:
+  - linux
+  - osx
 python:
-  - "3.6"
-  - "3.8"
+  - 3.6
+  - 3.8
+dist:
+  - xenial
+  - bionic
 install:
   - curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
   - source ~/.profile
   - poetry install
 script:
-  - tox
+  - poetry run pip --disable-pip-version-check install poetry
+  - poetry run tox

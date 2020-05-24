@@ -3,13 +3,19 @@
       - Visual Studio 2019
     environment:
       matrix:
+      - PYTHON_EXECUTABLE: C:\Python36\python.exe
       - TOXENV: py36
+      - PYTHON_EXECUTABLE: C:\Python36-x64\python.exe
+      - TOXENV: py36
+      - PYTHON_EXECUTABLE: C:\Python38\python.exe
+      - TOXENV: py38
+      - PYTHON_EXECUTABLE: C:\Python38-x64\python.exe
       - TOXENV: py38
 
     build: off
 
     install:
-      - ps: (Invoke-WebRequest -Uri https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py -UseBasicParsing).Content | python;
+      - ps: (Invoke-WebRequest -Uri https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py -UseBasicParsing).Content | $PYTHON_EXECUTABLE;
       - ps: $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User");
       - ps: poetry install;
 

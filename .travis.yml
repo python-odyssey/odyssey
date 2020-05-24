@@ -1,4 +1,3 @@
-language: python
 jobs:
   include:
     - os: linux
@@ -21,3 +20,5 @@ install:
 script:
   - poetry run pip --disable-pip-version-check install poetry
   - poetry run tox
+after_success:
+  - coveralls

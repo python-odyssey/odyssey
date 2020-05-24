@@ -14,3 +14,6 @@
 
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
     :target: https://github.com/psf/black
+
+.. image:: https://coveralls.io/repos/github/GodwinneLorayne/odyssey/badge.svg?branch=master
+    :target: https://coveralls.io/github/GodwinneLorayne/odyssey?branch=master

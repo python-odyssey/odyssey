@@ -4,20 +4,26 @@ jobs:
       dist: xenial
       language: python
       python: 3.6
-      env: TOXENV=py36
+      env:
+        - TOXENV=py36
+        - PYTHON_EXECUTABLE=python
     - os: linux
       dist: bionic
       language: python
       python: 3.8
-      env: TOXENV=py38
+      env:
+        - TOXENV=py38
+        - PYTHON_EXECUTABLE=python
     - os: osx
       env:
         - TOXENV=py38
         - PYTHON_BREW_VERSION=python@3.8
+        - PYTHON_EXECUTABLE=/usr/local/opt/python@3.8/bin/python3
 install:
   - if [ $TRAVIS_OS_NAME = osx ]; then brew install $PYTHON_BREW_VERSION; fi
-  - curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+  - curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | $PYTHON_EXECUTABLE
   - source ~/.profile
+  - poetry env use $PYTHON_EXECUTABLE
   - poetry install
 script:
   - poetry run pip --disable-pip-version-check install poetry

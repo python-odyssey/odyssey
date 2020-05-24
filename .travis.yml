@@ -10,12 +10,11 @@ jobs:
       python: 3.8
       env: TOXENV=py38
     - os: osx
-      python: 3.6
-      env: TOXENV=py36
-    - os: osx
-      python: 3.8
-      env: TOXENV=py38
+      env:
+        - TOXENV=py38
+        - PYTHON_BREW_VERSION=python@3.8
 install:
+  - if [ $TRAVIS_OS_NAME = osx ]; then brew install $PYTHON_BREW_VERSION; fi
   - curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
   - source ~/.profile
   - poetry install

@@ -1,13 +1,20 @@
 language: python
-os:
-  - linux
-  - osx
-python:
-  - 3.6
-  - 3.8
-dist:
-  - xenial
-  - bionic
+jobs:
+  include:
+    - os: linux
+      dist: xenial
+      python: 3.6
+      env: TOXENV=py36
+    - os: linux
+      dist: bionic
+      python: 3.8
+      env: TOXENV=py38
+    - os: osx
+      python: 3.6
+      env: TOXENV=py36
+    - os: osx
+      python: 3.8
+      env: TOXENV=py38
 install:
   - curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
   - source ~/.profile

@@ -17,3 +17,6 @@
 
 .. image:: https://coveralls.io/repos/github/GodwinneLorayne/odyssey/badge.svg?branch=master
     :target: https://coveralls.io/github/GodwinneLorayne/odyssey?branch=master
+
+.. image:: https://img.shields.io/discord/714011709794418698
+    :target: https://discord.com/channels/714011709794418698

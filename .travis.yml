@@ -15,6 +15,7 @@ jobs:
         - TOXENV=py38
         - PYTHON_EXECUTABLE=python
     - os: osx
+      language: generic
       env:
         - TOXENV=py38
         - PYTHON_BREW_VERSION=python@3.8

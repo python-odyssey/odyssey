@@ -28,7 +28,11 @@
 
 .. image:: https://img.shields.io/github/workflow/status/GodwinneLorayne/odyssey/Python%20package/master?label=github
     :target: https://github.com/GodwinneLorayne/odyssey/actions?query=workflow%3A%22Python+package%22
-    :alt: GitHub Workflow Status
+    :alt: GitHub Workflow
+
+.. image:: https://img.shields.io/codeship/9d611200-8038-0138-868a-7e7dbe13f4dd/master?label=codeship
+    :target: https://app.codeship.com/projects/9d611200-8038-0138-868a-7e7dbe13f4dd
+    :alt: Codeship
 
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
     :target: https://github.com/psf/black

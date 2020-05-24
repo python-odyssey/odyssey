@@ -3,22 +3,32 @@
 
 *Even if it will take ten years, it will have been worth it.*
 
-.. image:: https://img.shields.io/badge/platform-windows%20%7C%20linux%20%7C%20osx-lightgrey   :alt: Supported Platforms
+.. image:: https://img.shields.io/badge/platform-windows%20%7C%20linux%20%7C%20osx-lightgrey
+    :alt: Supported Platforms
 
-.. image:: https://img.shields.io/github/v/release/GodwinneLorayne/odyssey   :alt: GitHub Release (latest SemVer)
+.. image:: https://img.shields.io/github/v/release/GodwinneLorayne/odyssey
+    :target: https://github.com/GodwinneLorayne/odyssey/releases
+    :alt: GitHub Release
 
-.. image:: https://img.shields.io/pypi/v/odyssey   :alt: PyPI
+.. image:: https://img.shields.io/pypi/v/odyssey
+    :target: https://pypi.org/project/odyssey/
+    :alt: PyPI
 
-.. image:: https://img.shields.io/travis/com/GodwinneLorayne/odyssey/master?label=travis   :alt: Travis
+.. image:: https://img.shields.io/travis/com/GodwinneLorayne/odyssey/master?label=travis
     :target: https://travis-ci.com/GodwinneLorayne/odyssey
+    :alt: Travis
 
-.. image:: https://img.shields.io/appveyor/build/GodwinneLorayne/odyssey/master?label=appveyor   :alt: AppVeyor
+.. image:: https://img.shields.io/appveyor/build/GodwinneLorayne/odyssey/master?label=appveyor
     :target: https://ci.appveyor.com/project/GodwinneLorayne/odyssey
+    :alt: AppVeyor
 
-.. image:: https://img.shields.io/circleci/build/github/GodwinneLorayne/odyssey/master?label=circleci   :alt: CircleCI
+.. image:: https://img.shields.io/circleci/build/github/GodwinneLorayne/odyssey/master?label=circleci
     :target: https://circleci.com/gh/GodwinneLorayne/odyssey/tree/master
+    :alt: CircleCI
 
-.. image:: https://img.shields.io/github/workflow/status/GodwinneLorayne/odyssey/python-package/master?label=github   :alt: GitHub Workflow
+.. image:: https://img.shields.io/github/workflow/status/GodwinneLorayne/odyssey/Python%20package/master?label=github
+    :target: https://github.com/GodwinneLorayne/odyssey/actions?query=workflow%3A%22Python+package%22
+    :alt: GitHub Workflow Status
 
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
     :target: https://github.com/psf/black

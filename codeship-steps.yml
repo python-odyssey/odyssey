@@ -1,0 +1,16 @@
+- name: install_poetry
+  service: app
+  command: curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3
+- type: serial
+  name: install_dependencies
+  service: app
+  steps:
+    - command: source ~/.profile
+    - command: poetry env use python3
+    - command: poetry install
+- type: serial
+  name: test
+  service: app
+  steps:
+    - command: poetry run pip --disable-pip-version-check install poetry
+    - command: poetry run tox

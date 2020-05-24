@@ -3,23 +3,22 @@
 
 *Even if it will take ten years, it will have been worth it.*
 
-.. image:: https://img.shields.io/badge/platform-windows%20%7C%20linux%20%7C%20osx-lightgrey
-    :alt: Supported Platforms
+.. image:: https://img.shields.io/badge/platform-windows%20%7C%20linux%20%7C%20osx-lightgrey   :alt: Supported Platforms
 
-.. image:: https://img.shields.io/github/v/release/GodwinneLorayne/odyssey
-    :alt: GitHub release (latest SemVer)
+.. image:: https://img.shields.io/github/v/release/GodwinneLorayne/odyssey   :alt: GitHub Release (latest SemVer)
 
-.. image:: https://img.shields.io/pypi/v/odyssey
-    :alt: PyPI
+.. image:: https://img.shields.io/pypi/v/odyssey   :alt: PyPI
 
-.. image:: https://travis-ci.com/GodwinneLorayne/odyssey.svg?branch=master
+.. image:: https://img.shields.io/travis/com/GodwinneLorayne/odyssey/master?label=travis   :alt: Travis
     :target: https://travis-ci.com/GodwinneLorayne/odyssey
 
-.. image:: https://ci.appveyor.com/api/projects/status/github/GodwinneLorayne/odyssey?branch=master&svg=true
+.. image:: https://img.shields.io/appveyor/build/GodwinneLorayne/odyssey/master?label=appveyor   :alt: AppVeyor
     :target: https://ci.appveyor.com/project/GodwinneLorayne/odyssey
 
-.. image:: https://circleci.com/gh/GodwinneLorayne/odyssey/tree/master.svg?style=shield
+.. image:: https://img.shields.io/circleci/build/github/GodwinneLorayne/odyssey/master?label=circleci   :alt: CircleCI
     :target: https://circleci.com/gh/GodwinneLorayne/odyssey/tree/master
+
+.. image:: https://img.shields.io/github/workflow/status/GodwinneLorayne/odyssey/python-package/master?label=github   :alt: GitHub Workflow
 
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
     :target: https://github.com/psf/black

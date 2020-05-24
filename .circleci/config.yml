@@ -9,6 +9,9 @@ jobs:
       - image: circleci/python:3.6.9
     steps:
       - checkout
+      - run: 
+          name: "Set environment variables"
+          command: echo 'export TOXENV=py36' >> $BASH_ENV
       - run:
           name: Install poetry
           command: curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
@@ -26,6 +29,9 @@ jobs:
       - image: circleci/python:3.8.2
     steps:
       - checkout
+      - run: 
+          name: "Set environment variables"
+          command: echo 'export TOXENV=py38' >> $BASH_ENV
       - run:
           name: Install poetry
           command: curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python

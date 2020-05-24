@@ -18,7 +18,7 @@
 .. image:: https://ci.appveyor.com/api/projects/status/github/GodwinneLorayne/odyssey?branch=master&svg=true
     :target: https://ci.appveyor.com/project/GodwinneLorayne/odyssey
 
-.. image:: https://circleci.com/gh/GodwinneLorayne/odyssey/tree/master.svg?style=svg
+.. image:: https://circleci.com/gh/GodwinneLorayne/odyssey/tree/master.svg?style=shield
     :target: https://circleci.com/gh/GodwinneLorayne/odyssey/tree/master
 
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg

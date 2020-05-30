@@ -16,7 +16,7 @@ jobs:
           name: Install poetry
           command: bin/install_poetry.sh
       - run:
-        name: Install dependencies
+          name: Install dependencies
           command: bin/install_dependencies.sh
       - run:
           name: Run tox
@@ -33,7 +33,7 @@ jobs:
           name: Install poetry
           command: bin/install_poetry.sh
       - run:
-        name: Install dependencies
+          name: Install dependencies
           command: bin/install_dependencies.sh
       - run:
           name: Run tox

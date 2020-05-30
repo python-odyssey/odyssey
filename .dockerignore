@@ -2,6 +2,7 @@
 **
 
 !.codeship/Dockerfile
+!bin/**
 !src/**
 !.coveragerc
 !LICENSE

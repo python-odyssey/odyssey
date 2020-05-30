@@ -24,5 +24,7 @@ jobs:
         poetry install
     - name: Test with tox
       run: |
+        if [ "${{ matrix.python-version }}" = "3.6" ]; then export TOXENV=py36; fi
+        if [ "${{ matrix.python-version }}" = "3.8" ]; then export TOXENV=py38; fi
         source ~/.profile
         poetry run tox

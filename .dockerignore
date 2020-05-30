@@ -1,0 +1,10 @@
+# Ignore everything
+**
+
+!.codeship/Dockerfile
+!src/**
+!.coveragerc
+!LICENSE
+!pyproject.toml
+!README.rst
+!tox.ini

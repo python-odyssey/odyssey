@@ -11,11 +11,9 @@
     build: off
 
     install:
-      - ps: Invoke-WebRequest -Uri https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py -UseBasicParsing -OutFile get-poetry.py; & $Env:PYTHON_EXECUTABLE get-poetry.py --yes; Remove-Item get-poetry.py;
-      - ps: $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User");
-      - ps: poetry env use $Env:PYTHON_EXECUTABLE;
-      - ps: poetry install;
+      - ps: bin/install_poetry.ps1
+      - ps: bin/refresh_path.ps1
+      - ps: bin/install_dependencies.ps1
 
     test_script:
-      - ps: poetry run pip --disable-pip-version-check install poetry
-      - ps: poetry run tox
+      - ps: run_tox.ps1

@@ -14,16 +14,13 @@ jobs:
           command: echo 'export TOXENV=py36' >> $BASH_ENV
       - run:
           name: Install poetry
-          command: curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+          command: bin/install_poetry.sh
       - run:
-          command: poetry install
-          name: Install dependencies
+        name: Install dependencies
+          command: bin/install_dependencies.sh
       - run:
-          name: Install poetry for tox
-          command: poetry run pip --disable-pip-version-check install poetry
-      - run:
-          name: Run tests
-          command: poetry run tox
+          name: Run tox
+          command: bin/run_tox.sh
   build-and-test-3-8-2:
     docker:
       - image: circleci/python:3.8.2
@@ -34,16 +31,13 @@ jobs:
           command: echo 'export TOXENV=py38' >> $BASH_ENV
       - run:
           name: Install poetry
-          command: curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+          command: bin/install_poetry.sh
       - run:
-          name: Install dependencies
-          command: poetry install
+        name: Install dependencies
+          command: bin/install_dependencies.sh
       - run:
-          name: Install poetry for tox
-          command: poetry run pip --disable-pip-version-check install poetry
-      - run:
-          name: Run tests
-          command: poetry run tox
+          name: Run tox
+          command: bin/run_tox.sh
 
 workflows:
   main:

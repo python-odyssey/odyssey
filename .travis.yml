@@ -23,11 +23,8 @@ jobs:
 install:
   - if [ $TRAVIS_OS_NAME = osx ]; then brew install $PYTHON_BREW_VERSION; fi
   - curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | $PYTHON_EXECUTABLE
-  - source ~/.profile
-  - poetry env use $PYTHON_EXECUTABLE
-  - poetry install
+  - bin/install_dependencies.sh
 script:
-  - poetry run pip --disable-pip-version-check install poetry
-  - poetry run tox
+  - bin/run_tox.sh
 after_success:
   - coveralls

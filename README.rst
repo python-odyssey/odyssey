@@ -34,6 +34,10 @@
     :target: https://app.codeship.com/projects/9d611200-8038-0138-868a-7e7dbe13f4dd
     :alt: Codeship
 
+.. image:: https://readthedocs.org/projects/python-odyssey/badge/?version=latest
+    :target: https://python-odyssey.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
+
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
     :target: https://github.com/psf/black
 

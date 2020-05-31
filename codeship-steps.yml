@@ -1,8 +1,8 @@
+# Note that every step runs in isolated containers, so changes made on one step do not persist to the next step.
+# If you want to persist data between steps, use a single combined script, or use docker volumes in your services.
 - type: parallel
   steps:
     - type: serial
       service: alpine
       steps:
-        - command: bin/install_poetry.sh
-        - command: bin/install_dependencies.sh
-        - command: bin/run_tox.sh
+        - command: bin/build.sh

@@ -1,7 +1,3 @@
-- type: serial
-  name: Run Build
-  service: app
-  steps:
-    - command: bin/install_poetry.sh
-    - command: bin/install_dependencies.sh
-    - command: bin/run_tox.sh
+- name: Alpine
+  service: alpine
+  command: bin/install_poetry.sh && bin/install_dependencies.sh && bin/run_tox.sh

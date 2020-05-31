@@ -1,4 +1,4 @@
-app:
+alpine:
     build:
       image: codeship/alpine
       context: .

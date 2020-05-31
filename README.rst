@@ -37,10 +37,6 @@
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
     :target: https://github.com/psf/black
 
-.. image:: https://requires.io/github/python-odyssey/odyssey/requirements.svg?branch=master
-     :target: https://requires.io/github/python-odyssey/odyssey/requirements/?branch=master
-     :alt: Requirements Status
-
 .. image:: https://coveralls.io/repos/github/python-odyssey/odyssey/badge.svg?branch=master
     :target: https://coveralls.io/github/python-odyssey/odyssey?branch=master
 

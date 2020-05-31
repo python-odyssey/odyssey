@@ -1,9 +1,7 @@
-- name: install_poetry
+- type: serial
+  name: Run Build
   service: app
-  command: bin/install_poetry.sh
-- name: install_dependencies
-  service: app
-  command: bin/install_dependencies.sh
-- name: test
-  service: app
-  command: bin/run_tox.sh
+  steps:
+    - command: bin/install_poetry.sh
+    - command: bin/install_dependencies.sh
+    - command: bin/run_tox.sh

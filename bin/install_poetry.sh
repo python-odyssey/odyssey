@@ -1,3 +1,9 @@
 #!/usr/bin/env bash
 
-curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3
+if [[ -z "${PYTHON_EXECUTABLE}" ]]; then
+  PYTHON="python3"
+else
+  PYTHON="${PYTHON_EXECUTABLE}"
+fi
+
+curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | $PYTHON

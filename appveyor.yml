@@ -16,4 +16,4 @@
       - ps: bin/install_dependencies.ps1
 
     test_script:
-      - ps: run_tox.ps1
+      - ps: bin/run_tox.ps1

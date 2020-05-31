@@ -18,8 +18,8 @@
     :target: https://travis-ci.com/python-odyssey/odyssey
     :alt: Travis
 
-.. image:: https://img.shields.io/appveyor/build/python-odyssey/odyssey/master?label=appveyor
-    :target: https://ci.appveyor.com/project/python-odyssey/odyssey
+.. image:: https://img.shields.io/appveyor/build/GodwinneLorayne/odyssey/master?label=appveyor
+    :target: https://ci.appveyor.com/project/GodwinneLorayne/odyssey
     :alt: AppVeyor
 
 .. image:: https://img.shields.io/circleci/build/github/python-odyssey/odyssey/master?label=circleci

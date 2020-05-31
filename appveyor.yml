@@ -1,12 +1,40 @@
 ---
     image:
       - Visual Studio 2019
-    environment:
-      matrix:
-      - PYTHON_EXECUTABLE: C:\Python36\python.exe
-      - PYTHON_EXECUTABLE: C:\Python36-x64\python.exe
-      - PYTHON_EXECUTABLE: C:\Python38\python.exe
-      - PYTHON_EXECUTABLE: C:\Python38-x64\python.exe
+    configuration:
+      - Python36_32
+      - Python36_64
+      - Python38_32
+      - Python38_64
+    for:
+      -
+        matrix:
+          only:
+            - configuration: Python36_32
+        environment:
+          PYTHON_EXECUTABLE: C:\Python36\python.exe
+          TOXENV: py36
+      -
+        matrix:
+          only:
+            - configuration: Python36_64
+        environment:
+          PYTHON_EXECUTABLE: C:\Python36-x64\python.exe
+          TOXENV: py36
+      -
+        matrix:
+          only:
+            - configuration: Python38_32
+        environment:
+          PYTHON_EXECUTABLE: C:\Python38\python.exe
+          TOXENV: py38
+      -
+        matrix:
+          only:
+            - configuration: Python38_64
+        environment:
+          PYTHON_EXECUTABLE: C:\Python38-x64\python.exe
+          TOXENV: py38
 
     build: off
 

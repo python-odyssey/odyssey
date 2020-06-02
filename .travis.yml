@@ -26,5 +26,6 @@ install:
   - bin/install_dependencies.sh
 script:
   - bin/run_tox.sh
+  - bin/build.sh
 after_success:
   - coveralls

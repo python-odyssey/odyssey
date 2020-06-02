@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 
-BIN_DIRECTORY=$(dirname "$(readlink -f "$0")")
-echo BIN_DIRECTORY: $BIN_DIRECTORY
+if [[ -z "${PYTHON_EXECUTABLE}" ]]; then
+  PYTHON="python3"
+else
+  PYTHON="${PYTHON_EXECUTABLE}"
+fi
 
-$BIN_DIRECTORY/install_poetry.sh
-$BIN_DIRECTORY/install_dependencies.sh
-$BIN_DIRECTORY/run_tox.sh
+source $HOME/.poetry/env
+poetry env use $PYTHON
+poetry build

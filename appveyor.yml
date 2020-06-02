@@ -45,3 +45,6 @@
 
     test_script:
       - ps: bin/run_tox.ps1
+
+    after_test:
+      - ps: bin/build.ps1

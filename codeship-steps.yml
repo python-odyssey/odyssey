@@ -5,4 +5,4 @@
     - type: serial
       service: alpine
       steps:
-        - command: bin/build.sh
+        - command: bin/codeship_build.sh

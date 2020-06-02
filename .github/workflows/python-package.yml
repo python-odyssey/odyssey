@@ -27,4 +27,11 @@ jobs:
         if [ "${{ matrix.python-version }}" = "3.6" ]; then export TOXENV=py36; fi
         if [ "${{ matrix.python-version }}" = "3.8" ]; then export TOXENV=py38; fi
         source ~/.profile
+        poetry env use python
         poetry run tox
+        poetry build
+    - name: Build binaries
+      run: |
+        source ~/.profile
+        poetry env use python
+        poetry build

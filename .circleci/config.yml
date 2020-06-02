@@ -21,6 +21,9 @@ jobs:
       - run:
           name: Run tox
           command: bin/run_tox.sh
+      - run:
+          name: Build binaries
+          command: bin/build.sh
   build-and-test-3-8-2:
     docker:
       - image: circleci/python:3.8.2
@@ -38,7 +41,9 @@ jobs:
       - run:
           name: Run tox
           command: bin/run_tox.sh
-
+      - run:
+          name: Build binaries
+          command: bin/build.sh
 workflows:
   main:
     jobs:

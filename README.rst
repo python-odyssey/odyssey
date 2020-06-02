@@ -3,7 +3,7 @@
 
 *Even if it will take ten years, it will have been worth it.*
 
-.. image:: https://img.shields.io/badge/platform-windows%20%7C%20linux%20%7C%20osx-lightgrey
+.. image:: https://img.shields.io/badge/platform-windows%20%7C%20osx%20%7C%20ubuntu%20%7C%20alpine-lightgrey
     :alt: Supported Platforms
 
 .. image:: https://img.shields.io/github/v/release/python-odyssey/odyssey
@@ -35,7 +35,7 @@
     :alt: Codeship
 
 .. image:: https://readthedocs.org/projects/python-odyssey/badge/?version=latest
-    :target: https://python-odyssey.readthedocs.io/en/latest/?badge=latest
+    :target: https://python-odyssey.readthedocs.io/en/latest/index.html
     :alt: Documentation Status
 
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg

@@ -20,7 +20,7 @@
 project = 'odyssey'
 copyright = '2020, Justin Sharma'
 author = 'Justin Sharma'
-
+master_doc = 'index'
 
 # -- General configuration ---------------------------------------------------
 

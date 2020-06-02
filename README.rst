@@ -50,6 +50,10 @@
 .. image:: https://img.shields.io/github/issues-raw/python-odyssey/odyssey
     :alt: GitHub issues
 
+.. image:: https://snyk.io/test/github/python-odyssey/odyssey/badge.svg?targetFile=requirements.txt
+    :target: https://snyk.io/test/github/python-odyssey/odyssey?targetFile=requirements.txt
+    :alt: Known Vulnerabilities
+
 .. image:: https://img.shields.io/github/license/python-odyssey/odyssey
     :alt: GitHub
 

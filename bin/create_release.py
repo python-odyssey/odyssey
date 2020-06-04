@@ -15,7 +15,7 @@ def assert_clean_master():
     repository = git.Repo(PROJECT_ROOT_PATH)
     active_branch = repository.active_branch
     assert active_branch.name == 'master', f'Repository on branch {active_branch.name} is not currently on the master branch!'
-    #assert not repository.is_dirty(index=True, working_tree=True, untracked_files=True), 'Repository contents are dirty!'
+    assert not repository.is_dirty(index=True, working_tree=True, untracked_files=True), 'Repository contents are dirty!'
 
 def get_current_project_version() -> str:
     with open(PYPROJECT_TOML_PATH, 'r') as file_stream:
@@ -55,7 +55,7 @@ current_project_version = pyproject_toml['tool']['poetry']['version']
 assert_current_project_version_semver(current_project_version)
 enable_semantic_release_logging()
 current_tagged_version = get_current_version_by_tag()
-bump_string = 'minor'#assert_releaseable_changes_detected(current_tagged_version)
+bump_string = assert_releaseable_changes_detected(current_tagged_version)
 new_version = get_new_version(current_tagged_version, bump_string)
 print(f"Creating {bump_string} release! Bumping from version {current_tagged_version} to version {new_version}!")
 pyproject_toml['tool']['poetry']['version'] = new_version

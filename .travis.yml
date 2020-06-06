@@ -1,19 +1,37 @@
 jobs:
   include:
-  - os: linux
+  - arch: amd64
+    os: linux
     dist: xenial
     language: python
     python: 3.6
     env:
-    - TOXENV=py36
-    - PYTHON_EXECUTABLE=python
-  - os: linux
+      - TOXENV=py36
+      - PYTHON_EXECUTABLE=python
+  - arch: amd64
+    os: linux
     dist: bionic
     language: python
     python: 3.8
     env:
-    - TOXENV=py38
-    - PYTHON_EXECUTABLE=python
+      - TOXENV=py38
+      - PYTHON_EXECUTABLE=python
+  - arch: arm64
+    os: linux
+    dist: xenial
+    language: python
+    python: 3.6
+    env:
+      - TOXENV=py36
+      - PYTHON_EXECUTABLE=python
+  - arch: arm64
+    os: linux
+    dist: bionic
+    language: python
+    python: 3.8
+    env:
+      - TOXENV=py38
+      - PYTHON_EXECUTABLE=python
   - os: osx
     language: generic
     env:

@@ -6,6 +6,9 @@
 .. image:: https://img.shields.io/badge/platform-windows%20%7C%20osx%20%7C%20ubuntu%20%7C%20alpine-lightgrey
     :alt: Supported Platforms
 
+.. image:: https://img.shields.io/badge/architecture-x86%20%7C%20amd64%20%7C%20arm64-lightgrey
+    :alt: Supported CPU Architectures
+
 .. image:: https://img.shields.io/github/v/release/python-odyssey/odyssey
     :target: https://github.com/python-odyssey/odyssey/releases
     :alt: GitHub Release

@@ -1,25 +1,25 @@
 jobs:
   include:
-    - os: linux
-      dist: xenial
-      language: python
-      python: 3.6
-      env:
-        - TOXENV=py36
-        - PYTHON_EXECUTABLE=python
-    - os: linux
-      dist: bionic
-      language: python
-      python: 3.8
-      env:
-        - TOXENV=py38
-        - PYTHON_EXECUTABLE=python
-    - os: osx
-      language: generic
-      env:
-        - TOXENV=py38
-        - PYTHON_BREW_VERSION=python@3.8
-        - PYTHON_EXECUTABLE=/usr/local/opt/python@3.8/bin/python3
+  - os: linux
+    dist: xenial
+    language: python
+    python: 3.6
+    env:
+    - TOXENV=py36
+    - PYTHON_EXECUTABLE=python
+  - os: linux
+    dist: bionic
+    language: python
+    python: 3.8
+    env:
+    - TOXENV=py38
+    - PYTHON_EXECUTABLE=python
+  - os: osx
+    language: generic
+    env:
+    - TOXENV=py38
+    - PYTHON_BREW_VERSION=python@3.8
+    - PYTHON_EXECUTABLE=/usr/local/opt/python@3.8/bin/python3
 install:
   - if [ $TRAVIS_OS_NAME = osx ]; then brew install $PYTHON_BREW_VERSION; fi
   - curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | $PYTHON_EXECUTABLE
@@ -29,3 +29,6 @@ script:
   - bin/build.sh
 after_success:
   - coveralls
+notifications:
+  slack:
+    secure: k4NjGt9+O1AoSN1h/xCeLComEdyVmnedlGdDfc67OY02e0jnf8hIsCBYIWYEEHn5dgZkucN3EL/MwqrPx/iIsS3Nv3LhHRS4ocMczxahcJp0VSjVrK3IPskJgPArsoX2O/p4EzeiXe5urlIpixx6LUn1feVSHIkKqF/nNsOpLXxlcCKOHx1TOcGkHLSlXrKm/vebLkRi11ICqdO+qXYyTB3tKILWRyQr1n0NdpUmb1Ae0uCzPhhPOkhInaR7Ru7trZhy7V1ItM798novBdQnbEQ3EqE5f0iAF1kAo6IdHpYsIOEgKqRHNJi5KZMxf/qnjX1KtbuLMvFq4BVY4KCi7O/n4OniPTKgZo5KMbuXRUhddCaeZU68VkubCRSDA88Gc1nJbo6uUO3Txz31zjbeXXZ5Qa+3tNiF/BY+wPZ2AMntnMOwjMbxy4mYn12q6swEUva8gdOfoU9J+LfzWiB3SqyII5lun5rZKNxsQo5lyGX7r26VNh5K9w1QjuI1+MJBjcDVZIB1DFlppeCre2+PqynenzTBXIbpN8oCQ6EIm7jFQSHkvz5RxTjG9dkvSAc7fT2+xwExPQT/SG5xVr/wF1b45h6kYsoza2/8nwLl+RDuVIkbjgGyv0Ao+W8JfAc+y5gueBfrXHFmlgDEpENIPz6sMJAdec/N8IZOkwr7rKw=

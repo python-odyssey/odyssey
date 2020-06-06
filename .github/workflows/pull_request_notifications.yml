@@ -1,0 +1,16 @@
+on: pull_request
+name: Pull Request
+jobs:
+  slackNotification:
+    name: Slack Notification
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ::set-env name=pull_number::$(jq — raw-output .pull_request.number $GITHUB_EVENT_PATH)
+      - name: Slack Notification
+      - uses: rtCamp/action-slack-notify@master
+        env:
+          SLACK_CHANNEL: odyssey_pull_request_notifications
+          SLACK_MESSAGE: ‘Please review new PR at https://github.com/python-odyssey/odyssey/pull/${{ env.pull_number}}’
+          SLACK_TITLE: ‘Pull Request’
+          SLACK_USERNAME: Github’
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}

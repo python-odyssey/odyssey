@@ -6,7 +6,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo ::set-env name=pull_number::$(jq — raw-output .pull_request.number $GITHUB_EVENT_PATH)
-      - name: Slack Notification
       - uses: rtCamp/action-slack-notify@master
         env:
           SLACK_CHANNEL: odyssey_pull_request_notifications

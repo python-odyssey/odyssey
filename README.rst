@@ -55,7 +55,7 @@ odyssey is a cross-platform cross-architecture cross-scm workspace management to
 .. image:: https://img.shields.io/github/issues-raw/python-odyssey/odyssey
     :alt: GitHub issues
 
-.. image:: https://img.shields.io/snyk/vulnerabilities/github/python-odyssey/odyssey/requirements.txt
+.. image:: https://snyk.io/test/github/python-odyssey/odyssey/badge.svg?targetFile=requirements.txt
     :target: https://app.snyk.io/org/godwinnelorayne/project/0903f49e-6b81-4892-8b2a-0b532c571285
     :alt: Snyk Vulnerabilities
 

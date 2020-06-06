@@ -38,6 +38,8 @@ jobs:
     - TOXENV=py38
     - PYTHON_BREW_VERSION=python@3.8
     - PYTHON_EXECUTABLE=/usr/local/opt/python@3.8/bin/python3
+before_install:
+  - if [ $TRAVIS_CPU_ARCH = arm64 ]; then sudo chown -Rv $USER:$GROUP ~/.cache/pip/wheels; fi
 install:
   - if [ $TRAVIS_OS_NAME = osx ]; then brew install $PYTHON_BREW_VERSION; fi
   - if [ $TRAVIS_CPU_ARCH = arm64 ]; then $PYTHON_EXECUTABLE -m pip install --upgrade pip; fi

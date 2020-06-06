@@ -48,3 +48,9 @@
 
     after_test:
       - ps: bin/build.ps1
+
+    notifications:
+      - provider: Slack
+        auth_token:
+          secure: mYhZ3VvMr3r7bZ6O2kCCQ61KB3R2UAA2X1KyoC+ZiHaA848Fykh24Tx0Ic9i3Ztsjkj0mmQ7erX5JniAMoP+Lg==
+        channel: '#odyssey_build_notifications'

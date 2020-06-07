@@ -35,6 +35,7 @@ tomlkit = "^0.6.0"
 pyinstaller = "^3.6"
 pefile = "^2019.4.18"
 pywin32 = { version = "^227", markers = "sys_platform == 'win32'" }
+macholib = { version = "^1.14", markers = "sys_platform == 'darwin'" }
 
 [tool.semantic_release]
 version_variable = "src/odyssey/__init__.py:__version__"

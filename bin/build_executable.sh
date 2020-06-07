@@ -8,7 +8,10 @@ else
   PYTHON="${PYTHON_EXECUTABLE}"
 fi
 
-BIN_DIRECTORY=$(dirname "$(readlink -f "$0")")
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    BIN_DIRECTORY=$(dirname "$(readlink -f "$0")")
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    BIN_DIRECTORY=$(dirname "$(greadlink -f "$0")")
 
 source $HOME/.poetry/env
 poetry env use $PYTHON

@@ -2,7 +2,10 @@
 
 set -e
 
-BIN_DIRECTORY=$(dirname "$(readlink -f "$0")")
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    BIN_DIRECTORY=$(dirname "$(readlink -f "$0")")
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    BIN_DIRECTORY=$(dirname "$(greadlink -f "$0")")
 echo BIN_DIRECTORY: $BIN_DIRECTORY
 
 $BIN_DIRECTORY/install_poetry.sh

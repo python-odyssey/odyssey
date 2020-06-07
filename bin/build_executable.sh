@@ -12,6 +12,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     BIN_DIRECTORY=$(dirname "$(readlink -f "$0")")
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     BIN_DIRECTORY=$(dirname "$(greadlink -f "$0")")
+fi
 
 source $HOME/.poetry/env
 poetry env use $PYTHON

@@ -1,4 +1,4 @@
-if (!(Test-Path $Env:PYTHON_EXECUTABLE)) {
+if (!(Test-Path Env:PYTHON_EXECUTABLE)) {
     throw "Env:PYTHON_EXECUTABLE is missing!"
 }
 

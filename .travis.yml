@@ -48,6 +48,7 @@ install:
 script:
   - bin/run_tox.sh
   - bin/build.sh
+  - bin/build_executable.sh
 after_success:
   - coveralls
 notifications:

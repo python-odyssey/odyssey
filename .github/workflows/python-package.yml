@@ -18,20 +18,20 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
       run: |
-        curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
-        source ~/.profile
-        poetry env use python
-        poetry install
+        export PYTHON_EXECUTABLE=python
+        bin/install_poetry.sh
+        bin/install_dependencies.sh
     - name: Test with tox
       run: |
         if [ "${{ matrix.python-version }}" = "3.6" ]; then export TOXENV=py36; fi
         if [ "${{ matrix.python-version }}" = "3.8" ]; then export TOXENV=py38; fi
-        source ~/.profile
-        poetry env use python
-        poetry run tox
-        poetry build
+        export PYTHON_EXECUTABLE=python
+        bin/run_tox.sh
     - name: Build binaries
       run: |
-        source ~/.profile
-        poetry env use python
-        poetry build
+        export PYTHON_EXECUTABLE=python
+        bin/build.sh
+    - name: Build executable
+      run: |
+        export PYTHON_EXECUTABLE=python
+        bin/build_executable.sh

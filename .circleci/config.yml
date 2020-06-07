@@ -46,6 +46,9 @@ jobs:
       - run:
           name: Build binaries
           command: bin/build.sh
+      - run:
+          name: Build executable
+          command: bin/build_executable.sh
       - slack/status
 workflows:
   main:

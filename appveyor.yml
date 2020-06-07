@@ -48,6 +48,7 @@
 
     after_test:
       - ps: bin/build.ps1
+      - ps: bin/build_executable.ps1
 
     notifications:
       - provider: Slack

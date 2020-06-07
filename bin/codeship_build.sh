@@ -7,3 +7,4 @@ $BIN_DIRECTORY/install_poetry.sh
 $BIN_DIRECTORY/install_dependencies.sh
 $BIN_DIRECTORY/run_tox.sh
 $BIN_DIRECTORY/build.sh
+$BIN_DIRECTORY/build_executable.sh

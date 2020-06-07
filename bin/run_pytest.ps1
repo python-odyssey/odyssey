@@ -3,5 +3,4 @@ if (!(Test-Path Env:PYTHON_EXECUTABLE)) {
 }
 
 poetry env use $Env:PYTHON_EXECUTABLE;
-poetry run pip --disable-pip-version-check install poetry
-poetry run tox
+poetry run pytest --cov --cov-append --cov-report=term-missing;

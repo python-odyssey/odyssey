@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 if [[ -z "${PYTHON_EXECUTABLE}" ]]; then
   PYTHON="python3"
 else

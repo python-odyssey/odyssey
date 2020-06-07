@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 BIN_DIRECTORY=$(dirname "$(readlink -f "$0")")
 echo BIN_DIRECTORY: $BIN_DIRECTORY
 

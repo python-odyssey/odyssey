@@ -2,7 +2,7 @@
 
 set -e
 
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+if [[ "$OSTYPE" == "linux-gnu"* ]] || [[ "$OSTYPE" == "linux-musl"* ]]; then
     BIN_DIRECTORY=$(dirname "$(readlink -f "$0")")
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     BIN_DIRECTORY=$(dirname "$(greadlink -f "$0")")

@@ -36,6 +36,7 @@ jeepney==0.4.3; sys_platform == "linux"
 jinja2==2.11.2
 keyring==21.2.1
 lazy-object-proxy==1.4.3
+macholib==1.14; sys_platform == "darwin"
 markupsafe==1.1.1
 mccabe==0.6.1
 more-itertools==8.3.0

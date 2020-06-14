@@ -1,5 +1,5 @@
-🚣⛵ odyssey ⛵🚣
-=============
+🚣 ⛵ odyssey ⛵ 🚣
+=====================
 
 odyssey is a cross-platform cross-architecture cross-scm workspace management tool. It is designed from the ground up to support multi-repository workflows, and is easily extended to work with any scm or package management tool out there. Although odyssey is written in python, it will work for multi-repository projects in any programming language, even ones that use multiple languages.
 

@@ -63,3 +63,36 @@ odyssey is a cross-platform cross-architecture cross-scm workspace management to
 
 .. image:: https://img.shields.io/discord/714011709794418698
     :target: https://discord.com/channels/714011709794418698
+
+Problem Space
+-------------
+
+odyssey is the answer to the question "How can my project use multiple types of version control, where different types of files can be stored in the system most approproiate them?"
+
+A practical use case from real-world experience: In the video game industry, projects have large amounts of both code and binary files. Projects can have tens, hundreds, or thousands of GBs of development assets and hundreds of thousands or even millions of lines of code. Most teams at present choose between git and perforce. This leads to all kinds of problems in either case. odyssey is built so that teams can choose to use git for their source files (code, documentation, scripts, asset manifests, etc.) and use perforce for their asset files (images, sounds, models, animations, etc.)
+
+Goals
+-----
+
+Usefulness: odyssey should be useful to a wide variety of teams in a wide variety of industries. Both open source projects and enterprise projects should find something they love here.
+
+Gradual Adoption: odyssey should not force an all or nothing scenario where only new teams can use it. Many teams have decades of effort invested in their existing setup, and they need to be able to adopt odyssey usage gradually for it to stand a chace of success.
+
+Reproducibility: odyssey should make it easier to reproduce workflows for both developer workstations and build pipelines.
+
+Speed: odyssey should execute as fast as possible, but no faster. You'll know it when you see it.
+
+Related Tools
+-------------
+
+Yarn_: Yarn is a package manager that doubles down as project manager. Whether you work on one-shot projects or large monorepos, as a hobbyist or an enterprise user, we've got you covered.
+
+.. _Yarn: https://yarnpkg.com/
+
+Yarn has excellent design around reproducibility, and consequently is very useful to teams with a lot of investment on the line. Unfortunately yarn seems only designed for npm and git packages, and primarily supports monorepos.
+
+meta_: meta is a tool for managing multi-project systems and libraries. It answers the conundrum of choosing between a mono repo or many repos by saying "both", with a meta repo!
+
+.. _meta: https://www.npmjs.com/package/meta
+
+meta seems really useful at the outset. It allows you to create a meta-repo, which allows sharing of workspaces. This is an essential feature. meta also has support for plugins which can extend its functionality in many ways. Unfortunately, at time of writing meta-repos are not recursive, meta itself cannot be distributed without node and npm, and the current meta design doesn't seem to leave room for perforce sub-repos.

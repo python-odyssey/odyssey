@@ -82,6 +82,8 @@ Reproducibility: odyssey should make it easier to reproduce workflows for both d
 
 Speed: odyssey should execute as fast as possible, but no faster. You'll know it when you see it.
 
+Self-hosting: odyssey should use the previous distribution of odyssey for development and build automation of itself.
+
 Related Tools
 -------------
 

@@ -1,10 +1,26 @@
 [tool.poetry]
 name = "odyssey"
 version = "1.0.1"
-description = ""
+description = "A Multi-SCM Multi-Repository Workspace Management Framework"
 readme = "README.rst"
 license = "MIT"
 authors = ["Justin Sharma <justin.elite@gmail.com>"]
+repository = "https://github.com/python-odyssey/odyssey"
+documentation = "https://python-odyssey.readthedocs.io/en/latest/"
+classifiers =  [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: System Administrators"
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Topic :: Software Development :: Build Tools",
+    "Topic :: Software Development :: Documentation",
+    "Topic :: Software Development :: Version Control"
+]
 packages = [
     { include = "odyssey", from = "src" },
 ]

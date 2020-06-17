@@ -3,4 +3,4 @@ if (!(Test-Path Env:PYTHON_EXECUTABLE)) {
 }
 
 poetry env use $Env:PYTHON_EXECUTABLE;
-poetry run pytest --cov --cov-append --cov-report=term-missing;
+poetry run pytest

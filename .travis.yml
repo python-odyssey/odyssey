@@ -46,7 +46,7 @@ install:
   - curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | $PYTHON_EXECUTABLE
   - bin/install_dependencies.sh
 script:
-  - bin/run_tox.sh
+  - bin/run_pytest.sh
   - bin/build.sh
   - bin/build_executable.sh
 after_success:

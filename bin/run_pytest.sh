@@ -10,4 +10,4 @@ fi
 
 source $HOME/.poetry/env
 poetry env use $PYTHON
-poetry run pytest --cov --cov-append --cov-report=term-missing
+poetry run pytest

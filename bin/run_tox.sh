@@ -9,6 +9,10 @@ else
 fi
 
 source $HOME/.poetry/env
-poetry env use $PYTHON
+
+if [[ -n "${VIRTUAL_ENVIRONMENT}" ]]; then
+  poetry env use $PYTHON
+fi
+
 poetry run pip --disable-pip-version-check install poetry
 poetry run tox

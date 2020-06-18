@@ -15,6 +15,10 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 source $HOME/.poetry/env
-poetry env use $PYTHON
+
+if [[ -n "${VIRTUAL_ENVIRONMENT}" ]]; then
+  poetry env use $PYTHON
+fi
+
 paths=$(poetry run python -c 'import site; print("--paths=" + " --paths=".join(site.getsitepackages()));')
 poetry run pyinstaller $BIN_DIRECTORY/../src/odyssey/__main__.py --noconfirm --clean --onefile --console $paths --name odyssey

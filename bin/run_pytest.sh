@@ -9,5 +9,9 @@ else
 fi
 
 source $HOME/.poetry/env
-poetry env use $PYTHON
+
+if [[ -n "${VIRTUAL_ENVIRONMENT}" ]]; then
+  poetry env use $PYTHON
+fi
+
 poetry run pytest

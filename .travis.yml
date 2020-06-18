@@ -6,7 +6,7 @@ jobs:
     language: python
     python: 3.6
     env:
-      - TOXENV=py36
+      - VIRTUAL_ENVIRONMENT=true
       - PYTHON_EXECUTABLE=python
   - arch: amd64
     os: linux
@@ -14,7 +14,7 @@ jobs:
     language: python
     python: 3.8
     env:
-      - TOXENV=py38
+      - VIRTUAL_ENVIRONMENT=true
       - PYTHON_EXECUTABLE=python
   - arch: arm64
     os: linux
@@ -22,7 +22,7 @@ jobs:
     language: python
     python: 3.6
     env:
-      - TOXENV=py36
+      - VIRTUAL_ENVIRONMENT=true
       - PYTHON_EXECUTABLE=python
       - PIP_NO_CACHE_DIR=true
   - arch: arm64
@@ -31,21 +31,18 @@ jobs:
     language: python
     python: 3.8
     env:
-      - TOXENV=py38
+      - VIRTUAL_ENVIRONMENT=true
       - PYTHON_EXECUTABLE=python
       - PIP_NO_CACHE_DIR=true
   - os: osx
     language: generic
     env:
-    - TOXENV=py38
     - PYTHON_BREW_VERSION=python@3.8
     - PYTHON_EXECUTABLE=/usr/local/opt/python@3.8/bin/python3
 install:
   - if [ $TRAVIS_OS_NAME = osx ]; then brew install $PYTHON_BREW_VERSION; fi
-  - if [ $TRAVIS_CPU_ARCH = arm64 ]; then $PYTHON_EXECUTABLE -m pip install --upgrade pip; fi
-  - if [ $TRAVIS_OS_NAME != osx ]; then sudo apt-get install python3-venv; fi
-  - if [ $TRAVIS_OS_NAME != osx ]; then virtualenv; fi
-  - curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | $PYTHON_EXECUTABLE
+  - if [ $TRAVIS_CPU_ARCH = arm64 ]; then python -m pip install --upgrade pip; fi
+  - curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
   - bin/install_dependencies.sh
 script:
   - bin/run_pytest.sh

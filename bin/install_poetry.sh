@@ -8,4 +8,4 @@ else
   PYTHON="${PYTHON_EXECUTABLE}"
 fi
 
-curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | $PYTHON
+curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | $PYTHON_EXECUTABLE

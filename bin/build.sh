@@ -11,7 +11,7 @@ fi
 source $HOME/.poetry/env
 
 if [[ -z "${VIRTUAL_ENVIRONMENT}" ]]; then
-  poetry env use $PYTHON
+  poetry env use $PYTHON_EXECUTABLE
 fi
 
 poetry build

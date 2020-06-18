@@ -8,6 +8,7 @@ jobs:
     env:
       - VIRTUAL_ENVIRONMENT=true
       - PYTHON_EXECUTABLE=python
+      - ORIGINAL_PYTHON=/opt/python/3.6/bin/python
   - arch: amd64
     os: linux
     dist: bionic
@@ -16,6 +17,7 @@ jobs:
     env:
       - VIRTUAL_ENVIRONMENT=true
       - PYTHON_EXECUTABLE=python
+      - ORIGINAL_PYTHON=/opt/python/3.8/bin/python
   - arch: arm64
     os: linux
     dist: xenial
@@ -25,6 +27,7 @@ jobs:
       - VIRTUAL_ENVIRONMENT=true
       - PYTHON_EXECUTABLE=python
       - PIP_NO_CACHE_DIR=true
+      - ORIGINAL_PYTHON=/opt/python/3.6/bin/python
   - arch: arm64
     os: linux
     dist: bionic
@@ -34,6 +37,7 @@ jobs:
       - VIRTUAL_ENVIRONMENT=true
       - PYTHON_EXECUTABLE=python
       - PIP_NO_CACHE_DIR=true
+      - ORIGINAL_PYTHON=/opt/python/3.8/bin/python
   - os: osx
     language: generic
     env:
@@ -48,6 +52,7 @@ install:
 script:
   - bin/run_pytest.sh
   - bin/build.sh
+  - if [ $TRAVIS_OS_NAME != osx ]; then export PYINSTALLER_PATHS=$($ORIGINAL_PYTHON -c 'import site; print("--paths=" + " --paths=".join(site.getsitepackages()));'); fi
   - bin/build_executable.sh
 after_success:
   - coveralls

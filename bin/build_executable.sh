@@ -17,8 +17,11 @@ fi
 source $HOME/.poetry/env
 
 if [[ -z "${VIRTUAL_ENVIRONMENT}" ]]; then
-  poetry env use $PYTHON
+  poetry env use $PYTHON_EXECUTABLE
 fi
 
-paths=$(poetry run python -c 'import site; print("--paths=" + " --paths=".join(site.getsitepackages()));')
-poetry run pyinstaller $BIN_DIRECTORY/../src/odyssey/__main__.py --noconfirm --clean --onefile --console $paths --name odyssey
+if [[ -z "${PYINSTALLER_PATHS}" ]]; then
+  PYINSTALLER_PATHS=$(poetry run python -c 'import site; print("--paths=" + " --paths=".join(site.getsitepackages()));')
+fi
+
+poetry run pyinstaller $BIN_DIRECTORY/../src/odyssey/__main__.py --noconfirm --clean --onefile --console $PYINSTALLER_PATHS --name odyssey

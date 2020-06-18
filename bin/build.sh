@@ -10,7 +10,7 @@ fi
 
 source $HOME/.poetry/env
 
-if [[ -n "${VIRTUAL_ENVIRONMENT}" ]]; then
+if [[ -z "${VIRTUAL_ENVIRONMENT}" ]]; then
   poetry env use $PYTHON
 fi
 

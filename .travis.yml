@@ -6,6 +6,7 @@ jobs:
     language: python
     python: 3.6
     env:
+      - TOXENV=py36
       - VIRTUAL_ENVIRONMENT=true
       - PYTHON_EXECUTABLE=python
       - ORIGINAL_PYTHON=/opt/python/3.6/bin/python
@@ -15,6 +16,7 @@ jobs:
     language: python
     python: 3.8
     env:
+      - TOXENV=py38
       - VIRTUAL_ENVIRONMENT=true
       - PYTHON_EXECUTABLE=python
       - ORIGINAL_PYTHON=/opt/python/3.8/bin/python
@@ -24,6 +26,7 @@ jobs:
     language: python
     python: 3.6
     env:
+      - TOXENV=py36
       - VIRTUAL_ENVIRONMENT=true
       - PYTHON_EXECUTABLE=python
       - PIP_NO_CACHE_DIR=true
@@ -34,6 +37,7 @@ jobs:
     language: python
     python: 3.8
     env:
+      - TOXENV=py38
       - VIRTUAL_ENVIRONMENT=true
       - PYTHON_EXECUTABLE=python
       - PIP_NO_CACHE_DIR=true
@@ -41,8 +45,9 @@ jobs:
   - os: osx
     language: generic
     env:
-    - PYTHON_BREW_VERSION=python@3.8
-    - PYTHON_EXECUTABLE=/usr/local/opt/python@3.8/bin/python3
+      - TOXENV=py38
+      - PYTHON_BREW_VERSION=python@3.8
+      - PYTHON_EXECUTABLE=/usr/local/opt/python@3.8/bin/python3
 install:
   - if [ $TRAVIS_OS_NAME = osx ]; then brew install $PYTHON_BREW_VERSION; fi
   - if [ $TRAVIS_CPU_ARCH = arm64 ]; then python -m pip install --upgrade pip; fi

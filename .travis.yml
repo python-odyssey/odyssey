@@ -3,45 +3,33 @@ jobs:
   - arch: amd64
     os: linux
     dist: xenial
-    language: python
-    python: 3.6
+    language: generic
     env:
       - TOXENV=py36
-      - VIRTUAL_ENVIRONMENT=true
       - PYTHON_EXECUTABLE=python
-      - ORIGINAL_PYTHON=/opt/python/3.6/bin/python
   - arch: amd64
     os: linux
     dist: bionic
-    language: python
-    python: 3.8
+    language: generic
     env:
       - TOXENV=py38
-      - VIRTUAL_ENVIRONMENT=true
-      - PYTHON_EXECUTABLE=python
-      - ORIGINAL_PYTHON=/opt/python/3.8/bin/python
+      - PYTHON_EXECUTABLE=/opt/python/3.8/bin/python
   - arch: arm64
     os: linux
     dist: xenial
-    language: python
-    python: 3.6
+    language: generic
     env:
       - TOXENV=py36
-      - VIRTUAL_ENVIRONMENT=true
       - PYTHON_EXECUTABLE=python
       - PIP_NO_CACHE_DIR=true
-      - ORIGINAL_PYTHON=/opt/python/3.6/bin/python
   - arch: arm64
     os: linux
     dist: bionic
-    language: python
-    python: 3.8
+    language: generic
     env:
       - TOXENV=py38
-      - VIRTUAL_ENVIRONMENT=true
-      - PYTHON_EXECUTABLE=python
+      - PYTHON_EXECUTABLE=/opt/python/3.8/bin/python
       - PIP_NO_CACHE_DIR=true
-      - ORIGINAL_PYTHON=/opt/python/3.8/bin/python
   - os: osx
     language: generic
     env:
@@ -52,12 +40,10 @@ install:
   - if [ $TRAVIS_OS_NAME = osx ]; then brew install $PYTHON_BREW_VERSION; fi
   - if [ $TRAVIS_CPU_ARCH = arm64 ]; then python -m pip install --upgrade pip; fi
   - curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | $PYTHON_EXECUTABLE
-  - if [ $TRAVIS_OS_NAME != osx ]; then source $HOME/.poetry/env; poetry config virtualenvs.create false; fi
   - bin/install_dependencies.sh
 script:
   - bin/run_tox.sh
   - bin/build.sh
-  - if [ $TRAVIS_OS_NAME != osx ]; then export PYINSTALLER_PATHS=$($ORIGINAL_PYTHON -c 'import site; print("--paths=" + " --paths=".join(site.getsitepackages()));'); fi
   - bin/build_executable.sh
 after_success:
   - coveralls

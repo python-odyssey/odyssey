@@ -21,7 +21,7 @@ jobs:
           command: bin/install_dependencies.sh
       - run:
           name: Run tox
-          command: bin/run_pytest.sh
+          command: bin/run_tox.sh
       - run:
           name: Build binaries
           command: bin/build.sh
@@ -45,7 +45,7 @@ jobs:
           command: bin/install_dependencies.sh
       - run:
           name: Run tox
-          command: bin/run_pytest.sh
+          command: bin/run_tox.sh
       - run:
           name: Build binaries
           command: bin/build.sh

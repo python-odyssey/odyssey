@@ -26,7 +26,7 @@ jobs:
         if [ "${{ matrix.python-version }}" = "3.6" ]; then export TOXENV=py36; fi
         if [ "${{ matrix.python-version }}" = "3.8" ]; then export TOXENV=py38; fi
         export PYTHON_EXECUTABLE=python
-        bin/run_pytest.sh
+        bin/run_tox.sh
     - name: Build binaries
       run: |
         export PYTHON_EXECUTABLE=python

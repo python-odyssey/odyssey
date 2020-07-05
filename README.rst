@@ -98,3 +98,9 @@ meta_: meta is a tool for managing multi-project systems and libraries. It answe
 .. _meta: https://www.npmjs.com/package/meta
 
 meta seems really useful at the outset. It allows you to create a meta-repo, which allows sharing of workspaces. This is an essential feature. meta also has support for plugins which can extend its functionality in many ways. Unfortunately, at time of writing meta-repos are not recursive, meta itself cannot be distributed without node and npm, and the current meta design doesn't seem to leave room for perforce sub-repos.
+
+semantic-release_: semantic-release automates the whole package release workflow including: determining the next version number, generating the release notes and publishing the package.
+
+.. _semantic-release: https://github.com/semantic-release/semantic-release
+
+semantic-release is an excellent tool to assist in releasing your software. Automatic versioning and tagging based on conventional commits is an important part of being able to scale to a multi-repository graph well. We want to easily support pinning and updating versions of sub-graph dependencies. Unfortunately, semantic-release is inflexible for use outside of the node/npm environment. It also doesn't use correct SemVer version numbers in the development branch (at time of writing).

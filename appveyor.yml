@@ -44,7 +44,7 @@
       - ps: bin/install_dependencies.ps1
 
     test_script:
-      - ps: bin/run_pytest.ps1
+      - ps: bin/run_tox.ps1
 
     after_test:
       - ps: bin/build.ps1

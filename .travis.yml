@@ -50,7 +50,7 @@ install:
   - if [ $TRAVIS_OS_NAME != osx ]; then source $HOME/.poetry/env; poetry config virtualenvs.create false; fi
   - bin/install_dependencies.sh
 script:
-  - bin/run_pytest.sh
+  - bin/run_tox.sh
   - bin/build.sh
   - if [ $TRAVIS_OS_NAME != osx ]; then export PYINSTALLER_PATHS=$($ORIGINAL_PYTHON -c 'import site; print("--paths=" + " --paths=".join(site.getsitepackages()));'); fi
   - bin/build_executable.sh

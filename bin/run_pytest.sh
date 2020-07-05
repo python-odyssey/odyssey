@@ -3,9 +3,9 @@
 set -e
 
 if [[ -z "${PYTHON_EXECUTABLE}" ]]; then
-  PYTHON="python3"
+  PYTHON_EXECUTABLE="python3"
 else
-  PYTHON="${PYTHON_EXECUTABLE}"
+  PYTHON_EXECUTABLE="${PYTHON_EXECUTABLE}"
 fi
 
 source $HOME/.poetry/env

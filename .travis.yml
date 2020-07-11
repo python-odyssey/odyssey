@@ -1,35 +1,5 @@
 jobs:
   include:
-  - arch: amd64
-    os: linux
-    dist: xenial
-    language: generic
-    env:
-      - TOXENV=py36
-      - PYTHON_EXECUTABLE=python
-  - arch: amd64
-    os: linux
-    dist: bionic
-    language: generic
-    env:
-      - TOXENV=py38
-      - PYTHON_EXECUTABLE=/opt/python/3.8/bin/python
-  - arch: arm64
-    os: linux
-    dist: xenial
-    language: generic
-    env:
-      - TOXENV=py36
-      - PYTHON_EXECUTABLE=python
-      - PIP_NO_CACHE_DIR=true
-  - arch: arm64
-    os: linux
-    dist: bionic
-    language: generic
-    env:
-      - TOXENV=py38
-      - PYTHON_EXECUTABLE=/opt/python/3.8/bin/python
-      - PIP_NO_CACHE_DIR=true
   - os: osx
     language: generic
     env:

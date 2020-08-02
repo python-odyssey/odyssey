@@ -7,6 +7,7 @@
 import os
 import io
 import re
+import shutil
 from enum import Enum
 import requests
 import lxml.objectify
@@ -111,8 +112,18 @@ def find_platform(version) -> list:
     return list(iter_directories(iter_items(table_element)))
 
 
-def find_files(version, platform) -> list:
+def find_file(version, platform) -> list:
     html_text = get_html_text(PERFORCE_VERSION_PATH + "/" + version + "/" + platform)
     html_etree = html_from_text(html_text)
     table_element = get_table_in_html(html_etree)
     return list(iter_files(iter_items(table_element)))
+
+
+def download_file(version, platform, file_name, output_path) -> str:
+    url = PERFORCE_VERSION_PATH + "/" + version + "/" + platform + "/" + file_name
+    temporary_path = output_path + ".tmp"
+    with requests.get(url, stream=True) as response:
+        with open(temporary_path, 'wb') as temp_file:
+            shutil.copyfileobj(response.raw, temp_file)
+    shutil.move(temporary_path, output_path)
+    return os.path.realpath(output_path)

@@ -69,5 +69,14 @@ def find_platform(version):
 @perforce_ftp.command()
 @click.option("-v", "--version", "version")
 @click.option("-p", "--platform", "platform")
-def find_files(version, platform):
-    return odyssey.perforce_ftp.find_files(version, platform)
+def find_file(version, platform):
+    return odyssey.perforce_ftp.find_file(version, platform)
+
+
+@perforce_ftp.command()
+@click.option("-v", "--version", "version")
+@click.option("-p", "--platform", "platform")
+@click.option("-f", "--file", "file_name")
+@click.option("-o", "--output", "output_path")
+def download_file(version, platform, file_name, output_path):
+    return odyssey.perforce_ftp.download_file(version, platform, file_name, output_path)

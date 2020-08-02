@@ -11,7 +11,7 @@ import pkgutil
 
 def convert_to_cli_string(obj) -> list:
     if isinstance(obj, (list, tuple, set)):
-        return '\n'.join([convert_to_cli_string(item) for item in obj])
+        return "\n".join([convert_to_cli_string(item) for item in obj])
     if isinstance(obj, (dict)):
         return json.dumps(obj, sort_key=True, indent=4)
     return str(obj)

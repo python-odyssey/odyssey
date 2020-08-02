@@ -6,6 +6,7 @@
 
 import odyssey
 import odyssey.core
+import odyssey.perforce_ftp
 import logging
 import click
 import click_log
@@ -25,7 +26,7 @@ def main_result_callback(result):
         return
 
     string = odyssey.core.convert_to_cli_string(result)
-    
+
     if string:
         click.echo(string)
 
@@ -46,3 +47,27 @@ def importable_modules():
 @python.command()
 def imported_modules():
     return odyssey.core.imported_modules()
+
+
+@main.group()
+def perforce_ftp():
+    """Interacts with perforce installer dist server."""
+    pass
+
+
+@perforce_ftp.command()
+def find_version():
+    return odyssey.perforce_ftp.find_version()
+
+
+@perforce_ftp.command()
+@click.option("-v", "--version", "version")
+def find_platform(version):
+    return odyssey.perforce_ftp.find_platform(version)
+
+
+@perforce_ftp.command()
+@click.option("-v", "--version", "version")
+@click.option("-p", "--platform", "platform")
+def find_files(version, platform):
+    return odyssey.perforce_ftp.find_files(version, platform)

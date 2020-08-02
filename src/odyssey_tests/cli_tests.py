@@ -23,12 +23,12 @@ def test_bare(runner):
 
 
 def test_help(runner):
-    result = runner.invoke(main, ['--help'])
-    
+    result = runner.invoke(main, ["--help"])
+
     assert result.exit_code == 0
 
 
 def test_version(runner):
-    result = runner.invoke(main, ['--version'])
+    result = runner.invoke(main, ["--version"])
 
     assert result.exit_code == 0

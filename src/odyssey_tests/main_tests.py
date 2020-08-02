@@ -25,23 +25,29 @@ def raise_exit(exit_code):
 
 def test_bare(runner):
     argv = []
-    with patch.object(sys, 'argv', argv), patch.object(sys, 'exit', raise_exit), pytest.raises(Exit) as exception_info:
+    with patch.object(sys, "argv", argv), patch.object(
+        sys, "exit", raise_exit
+    ), pytest.raises(Exit) as exception_info:
         main()
 
     assert exception_info.value.exit_code == 0
 
 
 def test_help(runner):
-    argv = ['--help']
-    with patch.object(sys, 'argv', argv), patch.object(sys, 'exit', raise_exit), pytest.raises(Exit) as exception_info:
+    argv = ["--help"]
+    with patch.object(sys, "argv", argv), patch.object(
+        sys, "exit", raise_exit
+    ), pytest.raises(Exit) as exception_info:
         main()
 
     assert exception_info.value.exit_code == 0
 
 
 def test_version(runner):
-    argv = ['--version']
-    with patch.object(sys, 'argv', argv), patch.object(sys, 'exit', raise_exit), pytest.raises(Exit) as exception_info:
+    argv = ["--version"]
+    with patch.object(sys, "argv", argv), patch.object(
+        sys, "exit", raise_exit
+    ), pytest.raises(Exit) as exception_info:
         main()
 
     assert exception_info.value.exit_code == 0

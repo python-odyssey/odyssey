@@ -6,8 +6,10 @@
 
 import odyssey.cli
 
+
 def main():
     odyssey.cli.main()
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

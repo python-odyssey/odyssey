@@ -104,3 +104,13 @@ semantic-release_: semantic-release automates the whole package release workflow
 .. _semantic-release: https://github.com/semantic-release/semantic-release
 
 semantic-release is an excellent tool to assist in releasing your software. Automatic versioning and tagging based on conventional commits is an important part of being able to scale to a multi-repository graph well. We want to easily support pinning and updating versions of sub-graph dependencies. Unfortunately, semantic-release is inflexible for use outside of the node/npm environment. It also doesn't use correct SemVer version numbers in the development branch (at time of writing).
+
+Using odyssey
+-------------
+
+Go the the latest release on the releases page and grab the published executable for your host platform. If one is not provided for your platform, you will most likely want to build one yourself.
+
+Developing odyssey
+------------------
+
+In order to work on odyssey you will need git, python 3.8+, and poetry. You should be able to work on odyssey in most operating system environments, including Windows, MacOS, Ubuntu, and Alpine.

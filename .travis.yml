@@ -7,7 +7,7 @@ jobs:
       - PYTHON_EXECUTABLE=/usr/local/opt/python@3.8/bin/python3
 install:
   - if [ $TRAVIS_CPU_ARCH = arm64 ]; then python -m pip install --upgrade pip; fi
-  - curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | $PYTHON_EXECUTABLE
+  - bin/install_poetry.sh
   - bin/install_dependencies.sh
 script:
   - bin/run_tox.sh

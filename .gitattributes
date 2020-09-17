@@ -1,3 +1,12 @@
+.travis.yml text eol=lf
+.gitignore text eol=lf
+.appveyor.yml text eol=crlf
+codeship-services.yml text eol=lf
+codeship-steps.yml text eol=lf
+.circleci/config.yml text eol=lf
+.github/workflows/pull_request_notifications.yml text eol=lf
+.github/workflows/python-package.yml text eol=lf
+
 *.bash     text eol=lf
 *.fish     text eol=lf
 *.sh       text eol=lf

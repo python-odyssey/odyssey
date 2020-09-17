@@ -6,7 +6,7 @@ RUN apk add --no-cache --upgrade bash
 
 ENTRYPOINT ["/bin/bash"]
 
-RUN apk --no-cache add curl build-base libffi-dev openssl-dev python3-dev git libxml2 libxslt 
+RUN apk --no-cache add curl build-base libffi-dev openssl-dev python3-dev git libxml2-dev libxslt-dev
 
 RUN adduser codeship --disabled-password
 

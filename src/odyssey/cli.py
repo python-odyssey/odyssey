@@ -11,6 +11,7 @@ import logging
 import click
 import click_log
 import platform
+from odyssey.git.cli import git
 
 
 @click.group()
@@ -37,6 +38,9 @@ def main_result_callback(result):
 @click.version_option(platform.python_version(), message="%(version)s")
 def python():
     pass
+
+
+main.add_command(git)
 
 
 @python.command()

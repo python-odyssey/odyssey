@@ -3,6 +3,8 @@
 .appveyor.yml text eol=crlf
 codeship-services.yml text eol=lf
 codeship-steps.yml text eol=lf
+poetry.lock text eol=auto
+pyproject.toml text eol=auto
 .circleci/config.yml text eol=lf
 .github/workflows/pull_request_notifications.yml text eol=lf
 .github/workflows/python-package.yml text eol=lf

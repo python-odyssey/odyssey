@@ -1,12 +1,13 @@
-from odyssey.reflect import is_callable
+import pytest
+from odyssey.reflect import is_callable, NotCallableError, is_callable_without_class_info, is_method_with_bound_self
 
 def free_function():
     pass
 
-class empty_class():
+class EmptyClass():
     pass
 
-class example_class():
+class ExampleClass():
     def __init__(self):
         pass
 
@@ -16,7 +17,9 @@ class example_class():
     def member_function(self):
         pass
 
-example_object = example_class()
+example_object = ExampleClass()
+
+example_lambda = lambda param: param
 
 def test_is_callable():
     assert is_callable(int)
@@ -27,9 +30,24 @@ def test_is_callable():
     assert not is_callable(["hello", "world"])
     assert is_callable(free_function)
     assert not is_callable(free_function())
-    assert is_callable(empty_class)
-    assert is_callable(example_class)
-    assert is_callable(example_class())
-    assert is_callable(example_class.member_function)
-    assert is_callable(example_class().member_function)
+    assert is_callable(EmptyClass)
+    assert is_callable(ExampleClass)
+    assert is_callable(ExampleClass())
+    assert is_callable(ExampleClass.member_function)
+    assert is_callable(ExampleClass().member_function)
     assert is_callable(example_object)
+    assert is_callable(example_lambda)
+
+def test_is_method_with_bound_self():
+    assert not is_method_with_bound_self(int)
+    assert not is_method_with_bound_self(str)
+    assert not is_method_with_bound_self(list)
+    assert not is_method_with_bound_self(free_function)
+    assert not is_method_with_bound_self(EmptyClass)
+    assert not is_method_with_bound_self(ExampleClass)
+    assert not is_method_with_bound_self(ExampleClass())
+    assert not is_method_with_bound_self(ExampleClass.member_function)
+    assert is_method_with_bound_self(ExampleClass().member_function)
+    assert not is_method_with_bound_self(example_object)
+    assert is_method_with_bound_self(example_object.member_function)
+    assert not is_method_with_bound_self(example_lambda)

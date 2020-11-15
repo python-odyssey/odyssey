@@ -7,9 +7,5 @@ from enum import Enum, unique
 def is_callable(obj) -> bool:
     return callable(obj)
 
-class CallableType(Enum):
-    Unknown = 0
-    FreeFunction = 1
-
-def callable_type():
-    pass
+def is_method_with_bound_self(obj) -> bool:
+    return callable(obj) and hasattr(obj, "__self__") and obj.__self__ is not None

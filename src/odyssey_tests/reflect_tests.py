@@ -1,5 +1,5 @@
 import pytest
-from odyssey.reflect import is_callable, NotCallableError, is_callable_without_class_info, is_method_with_bound_self
+from odyssey.reflect import is_callable, is_method_with_bound_self
 
 def free_function():
     pass

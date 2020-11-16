@@ -1,5 +1,7 @@
 import pytest
-from odyssey.reflect import is_callable, is_method_with_bound_self
+from odyssey.reflect import is_callable, is_method_with_bound_self, is_directory, is_package, list_directories, list_packages
+from os.path import join, realpath, dirname
+from collections import Counter
 
 def free_function():
     pass
@@ -51,3 +53,42 @@ def test_is_method_with_bound_self():
     assert not is_method_with_bound_self(example_object)
     assert is_method_with_bound_self(example_object.member_function)
     assert not is_method_with_bound_self(example_lambda)
+
+reflect_tests_directory = dirname(realpath(__file__))
+reflect_tests_data = join(reflect_tests_directory, "reflect_test_data")
+directory_one_path = join(reflect_tests_data, "directory_one")
+directory_two_path = join(reflect_tests_data, "directory_two")
+directory_three_path = join(reflect_tests_data, "directory_three")
+package_one_path = join(reflect_tests_data, "package_one")
+package_two_path = join(reflect_tests_data, "package_two")
+package_three_path = join(reflect_tests_data, "package_three")
+
+def test_is_directory():
+    assert is_directory(directory_one_path)
+    assert is_directory(directory_two_path)
+    assert is_directory(directory_three_path)
+    assert not is_directory(package_one_path)
+    assert not is_directory(package_two_path)
+    assert not is_directory(package_three_path)
+
+def test_is_package():
+    assert not is_package(directory_one_path)
+    assert not is_package(directory_two_path)
+    assert not is_package(directory_three_path)
+    assert is_package(package_one_path)
+    assert is_package(package_two_path)
+    assert is_package(package_three_path)
+
+def test_list_directories():
+    expected = [directory_one_path, directory_two_path, directory_three_path]
+
+    result = list_directories(reflect_tests_data)
+
+    assert Counter(expected) == Counter(result)
+
+def test_list_packages():
+    expected = [package_one_path, package_two_path, package_three_path]
+
+    result = list_packages(reflect_tests_data)
+
+    assert Counter(expected) == Counter(result)

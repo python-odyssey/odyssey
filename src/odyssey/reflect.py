@@ -4,7 +4,7 @@
 from inspect import ismodule, isclass
 from enum import Enum, unique
 from os import scandir
-from os.path import isdir, isfile, join, splitext
+from os.path import isdir, isfile, join, splitext, basename
 
 def is_callable(obj) -> bool:
     return callable(obj)
@@ -38,8 +38,18 @@ def list_packages(path) -> list:
 def has_py_extension(path) -> bool:
     return splitext(path)[1] == ".py"
 
+def has_private_name(path) -> bool:
+    return basename(path).startswith("__")
+
 def is_module_file(path) -> bool:
-    return isfile(path) and has_py_extension(path)
+    return isfile(path) and has_py_extension(path) and not has_private_name(path)
+
+def list_module_files(path) -> list:
+    result = []
+    for entry in scandir(path):
+        if(is_module_file(entry)):
+            result.append(entry.path)
+    return result
 
 def is_module(obj) -> bool:
     return ismodule(obj)

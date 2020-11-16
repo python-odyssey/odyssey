@@ -1,5 +1,5 @@
 import pytest
-from odyssey.reflect import is_callable, is_method_with_bound_self, is_directory, is_package, list_directories, list_packages
+from odyssey.reflect import is_callable, is_method_with_bound_self, is_directory, is_package, list_directories, list_packages, is_module_file, list_module_files
 from os.path import join, realpath, dirname
 from collections import Counter
 
@@ -63,6 +63,12 @@ package_one_path = join(reflect_tests_data, "package_one")
 package_two_path = join(reflect_tests_data, "package_two")
 package_three_path = join(reflect_tests_data, "package_three")
 
+module_one_path = join(directory_one_path, "module_one.py")
+module_two_path = join(directory_one_path, "module_two.py")
+module_three_path = join(package_one_path, "module_three.py")
+module_four_path = join(package_one_path, "module_four.py")
+
+
 def test_is_directory():
     assert is_directory(directory_one_path)
     assert is_directory(directory_two_path)
@@ -90,5 +96,25 @@ def test_list_packages():
     expected = [package_one_path, package_two_path, package_three_path]
 
     result = list_packages(reflect_tests_data)
+
+    assert Counter(expected) == Counter(result)
+
+def test_is_module_file():
+    assert is_module_file(module_one_path)
+    assert is_module_file(module_two_path)
+    assert is_module_file(module_three_path)
+    assert is_module_file(module_four_path)
+
+def test_list_module_files_in_directory():
+    expected = [module_one_path, module_two_path]
+
+    result = list_module_files(directory_one_path)
+
+    assert Counter(expected) == Counter(result)
+
+def test_list_module_files_in_package():
+    expected = [module_three_path, module_four_path]
+
+    result = list_module_files(package_one_path)
 
     assert Counter(expected) == Counter(result)

@@ -1,5 +1,5 @@
 import pytest
-from odyssey.reflect import is_callable, is_method_with_bound_self, is_directory, is_package, list_directories, list_packages, is_module_file, list_module_files
+from odyssey.reflect import is_callable, is_method_with_bound_self, is_directory, is_package, list_directories, list_packages, is_module_file, list_module_files, import_path_from_module_path
 from os.path import join, realpath, dirname
 from collections import Counter
 
@@ -118,3 +118,17 @@ def test_list_module_files_in_package():
     result = list_module_files(package_one_path)
 
     assert Counter(expected) == Counter(result)
+
+def test_import_path_from_module_path_directory():
+    expected = "module_one"
+
+    result = import_path_from_module_path(module_one_path)
+
+    assert expected == result
+
+def test_import_path_from_module_path_package():
+    expected = "package_one.module_three"
+
+    result = import_path_from_module_path(module_three_path)
+
+    assert expected == result

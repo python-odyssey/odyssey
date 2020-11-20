@@ -4,7 +4,7 @@
 from inspect import ismodule, isclass
 from enum import Enum, unique
 from os import scandir
-from os.path import isdir, isfile, join, splitext, basename
+from os.path import isdir, isfile, join, splitext, basename, split
 
 def is_callable(obj) -> bool:
     return callable(obj)
@@ -56,3 +56,13 @@ def is_module(obj) -> bool:
 
 def is_class(obj) -> bool:
     return isclass(obj)
+
+def import_path_from_module_path(path) -> str:
+    path, ext = splitext(path)
+    result = []
+    path, module = split(path)
+    result.append(module)
+    while is_package(path):
+        path, package = split(path)
+        result.append(package)
+    return ".".join(reversed(result))

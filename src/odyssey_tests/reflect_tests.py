@@ -133,6 +133,14 @@ def test_import_path_from_module_path_package():
 
     assert expected == result
 
+def test_is_module():
+    assert import_module_file(module_one_path)
+    assert import_module_file(module_three_path)
+
+def test_is_callable_after_import():
+    assert is_callable(import_module_file(module_one_path).function_one)
+    assert is_callable(import_module_file(module_three_path).function_three)
+
 def test_import_module_file_directory():
     expected = "result_one"
 

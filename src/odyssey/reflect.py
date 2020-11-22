@@ -5,6 +5,7 @@ from inspect import ismodule, isclass
 from enum import Enum, unique
 from os import scandir
 from os.path import isdir, isfile, join, splitext, basename, split
+from importlib.util import spec_from_file_location, module_from_spec
 
 def is_callable(obj) -> bool:
     return callable(obj)
@@ -66,3 +67,10 @@ def import_path_from_module_path(path) -> str:
         path, package = split(path)
         result.append(package)
     return ".".join(reversed(result))
+
+def import_module_file(path):
+    import_path = import_path_from_module_path(path)
+    spec = spec_from_file_location(import_path, path)
+    loaded_module = module_from_spec(spec)
+    spec.loader.exec_module(loaded_module)
+    return loaded_module 

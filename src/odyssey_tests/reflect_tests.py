@@ -1,5 +1,5 @@
 import pytest
-from odyssey.reflect import is_callable, is_method_with_bound_self, is_directory, is_package, list_directories, list_packages, is_module_file, list_module_files, import_path_from_module_path, import_module_file
+from odyssey.reflect import is_callable, is_method_with_bound_self, is_directory, is_package, list_directories, list_packages, is_module_file, list_module_files, import_path_from_module_path, import_module_file, has_member, get_member, get_classes, get_functions
 from os.path import join, realpath, dirname
 from collections import Counter
 
@@ -154,5 +154,35 @@ def test_import_module_file_package():
 
     module_three = import_module_file(module_three_path)
     result = module_three.function_three()
+
+    assert expected == result
+
+def test_has_member():
+    module_three = import_module_file(module_three_path)
+
+    assert has_member(module_three, "function_three")
+    assert has_member(module_three, "ClassOne")
+    assert has_member(module_three, "object_one")
+
+def test_get_member():
+    module_three = import_module_file(module_three_path)
+
+    assert get_member(module_three, "function_three") is module_three.function_three
+    assert get_member(module_three, "ClassOne") is module_three.ClassOne
+    assert get_member(module_three, "object_one") is module_three.object_one
+
+def test_get_classes():
+    module_three = import_module_file(module_three_path)
+    expected = [("ClassOne", module_three.ClassOne)]
+
+    result = get_classes(module_three)
+
+    assert expected == result
+
+def test_get_functions():
+    module_three = import_module_file(module_three_path)
+    expected = [("function_three", module_three.function_three)]
+
+    result = get_functions(module_three)
 
     assert expected == result

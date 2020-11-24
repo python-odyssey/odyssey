@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from inspect import ismodule, isclass
+from inspect import ismodule, isclass, getmembers
 from enum import Enum, unique
 from os import scandir
 from os.path import isdir, isfile, join, splitext, basename, split
@@ -58,6 +58,9 @@ def is_module(obj) -> bool:
 def is_class(obj) -> bool:
     return isclass(obj)
 
+def is_function(obj) -> bool:
+    return not isclass(obj) and callable(obj)
+
 def import_path_from_module_path(path) -> str:
     path, ext = splitext(path)
     result = []
@@ -74,3 +77,15 @@ def import_module_file(path):
     loaded_module = module_from_spec(spec)
     spec.loader.exec_module(loaded_module)
     return loaded_module 
+
+def has_member(module, member) -> bool:
+    return hasattr(module, member)
+
+def get_member(module, member) -> bool:
+    return getattr(module, member)
+
+def get_classes(module):
+    return getmembers(module, is_class)
+
+def get_functions(module):
+    return getmembers(module, is_function)

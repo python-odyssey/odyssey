@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from inspect import ismodule, isclass, getmembers, signature, Signature
+from inspect import ismodule, isclass, getmembers, signature, Signature, Parameter
 from enum import Enum, unique
 from os import scandir
 from os.path import isdir, isfile, join, splitext, basename, split
@@ -265,15 +265,30 @@ def reflect_value(value):
     return Value(value)
 
 
+class Parameter:
+    def __init__(self, parameter):
+        self.parameter = parameter
+        self.annotation = parameter.annotation
+        self.default = parameter.default
+
+    def has_annotation(self) -> bool:
+        return not self.annotation is Signature.empty
+
+    def has_default(self) -> bool:
+        return not self.default is Signature.empty
+
+
 class Function:
     def __init__(self, function):
         self.function = function
         self.signature = signature(function)
-
+        self.return_annotation = self.signature.return_annotation
+        self.parameters = [
+            Parameter(parameter) for parameter in self.signature.parameters.values()
+        ]
 
     def has_return_annotation(self) -> bool:
         return not self.signature.return_annotation is Signature.empty
-
 
     def invoke(self, *args, **kwargs):
         return self.function(*args, **kwargs)

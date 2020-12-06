@@ -364,4 +364,17 @@ def test_reflect_string_function():
     function = reflect_function(loaded_module.string_function)
 
     assert function.has_return_annotation()
+    assert function.return_annotation is str
     assert function.invoke() == "string"
+
+
+def test_reflect_identity_function():
+    module_file = reflect_module_file(module_four_path)
+    loaded_module = module_file.load()
+    function = reflect_function(loaded_module.identity_function)
+
+    assert not function.has_return_annotation()
+    assert function.invoke("value") == "value"
+    for parameter in function.parameters:
+        assert not parameter.has_default()
+        assert not parameter.has_annotation()

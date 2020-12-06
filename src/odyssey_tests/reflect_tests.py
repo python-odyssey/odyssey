@@ -23,6 +23,7 @@ from odyssey.reflect import (
     reflect_module,
     reflect_class,
     reflect_value,
+    reflect_function,
 )
 from os.path import join, realpath, dirname
 from collections import Counter
@@ -346,3 +347,21 @@ def test_reflect_value_one():
         "member_function_one",
         loaded_module.value_one.member_function_one,
     ) in value.functions
+
+
+def test_reflect_simplest_function():
+    module_file = reflect_module_file(module_four_path)
+    loaded_module = module_file.load()
+    function = reflect_function(loaded_module.simplest_function)
+
+    assert not function.has_return_annotation()
+    assert function.invoke() is None
+
+
+def test_reflect_string_function():
+    module_file = reflect_module_file(module_four_path)
+    loaded_module = module_file.load()
+    function = reflect_function(loaded_module.string_function)
+
+    assert function.has_return_annotation()
+    assert function.invoke() == "string"

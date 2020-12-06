@@ -1,27 +1,50 @@
 import pytest
-from odyssey.reflect import is_callable, is_method_with_bound_self, is_directory, is_package, list_directories, list_packages, is_module_file, list_module_files, import_path_from_module_path, import_module_file, has_member, get_member, get_classes, get_functions
+from odyssey.reflect import (
+    is_callable,
+    is_method_with_bound_self,
+    is_directory,
+    is_package,
+    list_directories,
+    list_packages,
+    is_module_file,
+    list_module_files,
+    import_path_from_module_path,
+    import_module_file,
+    has_member,
+    get_member,
+    get_classes,
+    get_functions,
+    get_values,
+    reflect_directory,
+    reflect_package,
+)
 from os.path import join, realpath, dirname
 from collections import Counter
+
 
 def free_function():
     pass
 
-class EmptyClass():
+
+class EmptyClass:
     pass
 
-class ExampleClass():
+
+class ExampleClass:
     def __init__(self):
         pass
 
     def __call__(self):
         pass
-    
+
     def member_function(self):
         pass
+
 
 example_object = ExampleClass()
 
 example_lambda = lambda param: param
+
 
 def test_is_callable():
     assert is_callable(int)
@@ -40,6 +63,7 @@ def test_is_callable():
     assert is_callable(example_object)
     assert is_callable(example_lambda)
 
+
 def test_is_method_with_bound_self():
     assert not is_method_with_bound_self(int)
     assert not is_method_with_bound_self(str)
@@ -53,6 +77,7 @@ def test_is_method_with_bound_self():
     assert not is_method_with_bound_self(example_object)
     assert is_method_with_bound_self(example_object.member_function)
     assert not is_method_with_bound_self(example_lambda)
+
 
 reflect_tests_directory = dirname(realpath(__file__))
 reflect_tests_data = join(reflect_tests_directory, "reflect_test_data")
@@ -77,6 +102,7 @@ def test_is_directory():
     assert not is_directory(package_two_path)
     assert not is_directory(package_three_path)
 
+
 def test_is_package():
     assert not is_package(directory_one_path)
     assert not is_package(directory_two_path)
@@ -85,12 +111,14 @@ def test_is_package():
     assert is_package(package_two_path)
     assert is_package(package_three_path)
 
+
 def test_list_directories():
     expected = [directory_one_path, directory_two_path, directory_three_path]
 
     result = list_directories(reflect_tests_data)
 
     assert Counter(expected) == Counter(result)
+
 
 def test_list_packages():
     expected = [package_one_path, package_two_path, package_three_path]
@@ -99,11 +127,13 @@ def test_list_packages():
 
     assert Counter(expected) == Counter(result)
 
+
 def test_is_module_file():
     assert is_module_file(module_one_path)
     assert is_module_file(module_two_path)
     assert is_module_file(module_three_path)
     assert is_module_file(module_four_path)
+
 
 def test_list_module_files_in_directory():
     expected = [module_one_path, module_two_path]
@@ -112,12 +142,14 @@ def test_list_module_files_in_directory():
 
     assert Counter(expected) == Counter(result)
 
+
 def test_list_module_files_in_package():
     expected = [module_three_path, module_four_path]
 
     result = list_module_files(package_one_path)
 
     assert Counter(expected) == Counter(result)
+
 
 def test_import_path_from_module_path_directory():
     expected = "module_one"
@@ -126,6 +158,7 @@ def test_import_path_from_module_path_directory():
 
     assert expected == result
 
+
 def test_import_path_from_module_path_package():
     expected = "package_one.module_three"
 
@@ -133,13 +166,16 @@ def test_import_path_from_module_path_package():
 
     assert expected == result
 
+
 def test_is_module():
     assert import_module_file(module_one_path)
     assert import_module_file(module_three_path)
 
+
 def test_is_callable_after_import():
     assert is_callable(import_module_file(module_one_path).function_one)
     assert is_callable(import_module_file(module_three_path).function_three)
+
 
 def test_import_module_file_directory():
     expected = "result_one"
@@ -149,6 +185,7 @@ def test_import_module_file_directory():
 
     assert expected == result
 
+
 def test_import_module_file_package():
     expected = "result_three"
 
@@ -157,6 +194,7 @@ def test_import_module_file_package():
 
     assert expected == result
 
+
 def test_has_member():
     module_three = import_module_file(module_three_path)
 
@@ -164,12 +202,14 @@ def test_has_member():
     assert has_member(module_three, "ClassOne")
     assert has_member(module_three, "object_one")
 
+
 def test_get_member():
     module_three = import_module_file(module_three_path)
 
     assert get_member(module_three, "function_three") is module_three.function_three
     assert get_member(module_three, "ClassOne") is module_three.ClassOne
     assert get_member(module_three, "object_one") is module_three.object_one
+
 
 def test_get_classes():
     module_three = import_module_file(module_three_path)
@@ -179,10 +219,62 @@ def test_get_classes():
 
     assert expected == result
 
+
 def test_get_functions():
     module_three = import_module_file(module_three_path)
     expected = [("function_three", module_three.function_three)]
 
     result = get_functions(module_three)
+
+    assert expected == result
+
+
+def test_get_values():
+    module_three = import_module_file(module_three_path)
+    expected = ("object_one", module_three.object_one)
+
+    result = get_values(module_three)
+
+    assert expected in result
+
+
+def test_reflect_directory():
+    directory = reflect_directory(reflect_tests_data)
+
+    print(directory.names)
+
+    assert False
+
+
+def test_reflect_directory():
+    expected = [
+        "directory_one",
+        "directory_three",
+        "directory_two",
+        "package_one",
+        "package_three",
+        "package_two",
+    ]
+    directory = reflect_directory(reflect_tests_data)
+
+    result = directory.names
+
+    assert expected == result
+
+
+def test_reflect_directory_one():
+    expected = ["module_one", "module_two"]
+    directory = reflect_directory(directory_one_path)
+
+    result = directory.names
+
+    assert expected == result
+
+
+def test_reflect_package_one():
+    expected = ["module_four", "module_three"]
+    package = reflect_package(package_one_path)
+
+    result = package.names
 
     assert expected == result

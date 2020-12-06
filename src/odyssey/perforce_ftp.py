@@ -123,7 +123,7 @@ def download_file(version, platform, file_name, output_path) -> str:
     url = PERFORCE_VERSION_PATH + "/" + version + "/" + platform + "/" + file_name
     temporary_path = output_path + ".tmp"
     with requests.get(url, stream=True) as response:
-        with open(temporary_path, 'wb') as temp_file:
+        with open(temporary_path, "wb") as temp_file:
             shutil.copyfileobj(response.raw, temp_file)
     shutil.move(temporary_path, output_path)
     return os.path.realpath(output_path)

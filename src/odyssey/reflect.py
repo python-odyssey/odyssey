@@ -80,6 +80,10 @@ def is_value(obj) -> bool:
     return not isclass(obj) and not callable(obj)
 
 
+def import_path_from_module(module) -> str:
+    return module.__name__
+
+
 def import_path_from_module_path(path) -> str:
     path, ext = splitext(path)
     result = []
@@ -223,3 +227,15 @@ class ModuleFile:
 
 def reflect_module_file(path):
     return ModuleFile(path)
+
+
+class Module:
+    def __init__(self, module):
+        self.module = module
+        self.classes = get_classes(module)
+        self.functions = get_functions(module)
+        self.values = get_values(module)
+
+
+def reflect_module(module):
+    return Module(module)

@@ -4,10 +4,12 @@ from odyssey.reflect import (
     is_method_with_bound_self,
     is_directory,
     is_package,
+    is_module,
     list_directories,
     list_packages,
     is_module_file,
     list_module_files,
+    import_path_from_module,
     import_path_from_module_path,
     import_module_file,
     has_member,
@@ -17,6 +19,8 @@ from odyssey.reflect import (
     get_values,
     reflect_directory,
     reflect_package,
+    reflect_module_file,
+    reflect_module,
 )
 from os.path import join, realpath, dirname
 from collections import Counter
@@ -278,3 +282,41 @@ def test_reflect_package_one():
     result = package.names
 
     assert expected == result
+
+
+def test_reflect_module_file_one():
+    import_path = "module_one"
+    module_file = reflect_module_file(module_one_path)
+
+    module = module_file.load()
+
+    assert is_module(module)
+    assert import_path == import_path_from_module(module)
+
+
+def test_reflect_module_file_three():
+    import_path = "package_one.module_three"
+    module_file = reflect_module_file(module_three_path)
+
+    module = module_file.load()
+
+    assert is_module(module)
+    assert import_path == import_path_from_module(module)
+
+
+def test_reflect_module_one():
+    module_file = reflect_module_file(module_one_path)
+    loaded_module = module_file.load()
+    module = reflect_module(loaded_module)
+
+    assert ("function_one", loaded_module.function_one) in module.functions
+
+
+def test_reflect_module_three():
+    module_file = reflect_module_file(module_three_path)
+    loaded_module = module_file.load()
+    module = reflect_module(loaded_module)
+
+    assert ("function_three", loaded_module.function_three) in module.functions
+    assert ("ClassOne", loaded_module.ClassOne) in module.classes
+    assert ("object_one", loaded_module.object_one) in module.values

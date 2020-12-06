@@ -7,4 +7,4 @@ class ClassOne:
         return "member_result_one"
 
 
-object_one = ClassOne()
+value_one = ClassOne()

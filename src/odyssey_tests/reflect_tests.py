@@ -21,6 +21,8 @@ from odyssey.reflect import (
     reflect_package,
     reflect_module_file,
     reflect_module,
+    reflect_class,
+    reflect_value,
 )
 from os.path import join, realpath, dirname
 from collections import Counter
@@ -204,7 +206,7 @@ def test_has_member():
 
     assert has_member(module_three, "function_three")
     assert has_member(module_three, "ClassOne")
-    assert has_member(module_three, "object_one")
+    assert has_member(module_three, "value_one")
 
 
 def test_get_member():
@@ -212,7 +214,7 @@ def test_get_member():
 
     assert get_member(module_three, "function_three") is module_three.function_three
     assert get_member(module_three, "ClassOne") is module_three.ClassOne
-    assert get_member(module_three, "object_one") is module_three.object_one
+    assert get_member(module_three, "value_one") is module_three.value_one
 
 
 def test_get_classes():
@@ -235,7 +237,7 @@ def test_get_functions():
 
 def test_get_values():
     module_three = import_module_file(module_three_path)
-    expected = ("object_one", module_three.object_one)
+    expected = ("value_one", module_three.value_one)
 
     result = get_values(module_three)
 
@@ -319,4 +321,28 @@ def test_reflect_module_three():
 
     assert ("function_three", loaded_module.function_three) in module.functions
     assert ("ClassOne", loaded_module.ClassOne) in module.classes
-    assert ("object_one", loaded_module.object_one) in module.values
+    assert ("value_one", loaded_module.value_one) in module.values
+
+
+def test_reflect_class_one():
+    module_file = reflect_module_file(module_three_path)
+    loaded_module = module_file.load()
+    module = reflect_module(loaded_module)
+    reflected_class = reflect_class(loaded_module.ClassOne)
+
+    assert (
+        "member_function_one",
+        loaded_module.ClassOne.member_function_one,
+    ) in reflected_class.functions
+
+
+def test_reflect_value_one():
+    module_file = reflect_module_file(module_three_path)
+    loaded_module = module_file.load()
+    module = reflect_module(loaded_module)
+    value = reflect_value(loaded_module.value_one)
+
+    assert (
+        "member_function_one",
+        loaded_module.value_one.member_function_one,
+    ) in value.functions

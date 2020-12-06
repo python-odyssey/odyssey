@@ -239,3 +239,27 @@ class Module:
 
 def reflect_module(module):
     return Module(module)
+
+
+class Class:
+    def __init__(self, class_object):
+        self.class_object = class_object
+        self.classes = get_classes(class_object)
+        self.functions = get_functions(class_object)
+        self.values = get_values(class_object)
+
+
+def reflect_class(class_object):
+    return Class(class_object)
+
+
+class Value:
+    def __init__(self, value):
+        self.value = value
+        self.classes = get_classes(value)
+        self.functions = get_functions(value)
+        self.values = get_values(value)
+
+
+def reflect_value(value):
+    return Value(value)

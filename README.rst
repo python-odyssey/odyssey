@@ -35,8 +35,8 @@ odyssey is a cross-platform cross-architecture cross-scm workspace management to
     :target: https://github.com/python-odyssey/odyssey/actions?query=workflow%3A%22Python+package%22
     :alt: GitHub Workflow
 
-.. image:: https://img.shields.io/codeship/9d611200-8038-0138-868a-7e7dbe13f4dd/master?label=codeship
-    :target: https://app.codeship.com/projects/9d611200-8038-0138-868a-7e7dbe13f4dd
+.. image:: https://img.shields.io/codeship/72420e60-85ba-0138-73ce-161eccafeee2/master?label=codeship
+    :target: https://app.codeship.com/projects/72420e60-85ba-0138-73ce-161eccafeee2
     :alt: Codeship
 
 .. image:: https://readthedocs.org/projects/python-odyssey/badge/?version=latest

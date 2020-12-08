@@ -6,6 +6,7 @@ from enum import Enum, unique
 from os import scandir
 from os.path import isdir, isfile, join, splitext, basename, split
 from importlib.util import spec_from_file_location, module_from_spec
+from sys import version_info
 
 
 def is_callable(obj) -> bool:
@@ -280,8 +281,9 @@ class ParameterKind(Enum):
 
 
 def inspect_to_reflect_parameter_kind(kind):
-    if kind == Parameter.POSITIONAL_ONLY:
-        return ParameterKind.PositionalOnly
+    if version_info.major >= 3 and version_info.minor >= 7:
+        if kind == Parameter.POSITIONAL_ONLY:
+            return ParameterKind.PositionalOnly
     if kind == Parameter.POSITIONAL_OR_KEYWORD:
         return ParameterKind.PositionalOrKeyword
     if kind == Parameter.VAR_POSITIONAL:

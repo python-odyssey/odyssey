@@ -265,11 +265,40 @@ def reflect_value(value):
     return Value(value)
 
 
-class Parameter:
+@unique
+class ParameterKind(Enum):
+    # Value must be supplied as a positional argument. Positional only parameters are those which appear before a / entry (if present) in a Python function definition.
+    PositionalOnly = 1
+    # Value may be supplied as either a keyword or positional argument (this is the standard binding behaviour for functions implemented in Python.)
+    PositionalOrKeyword = 2
+    # A tuple of positional arguments that aren’t bound to any other parameter. This corresponds to a *args parameter in a Python function definition.
+    VarPositional = 3
+    # Value must be supplied as a keyword argument. Keyword only parameters are those which appear after a * or *args entry in a Python function definition.
+    KeywordOnly = 4
+    # A dict of keyword arguments that aren’t bound to any other parameter. This corresponds to a **kwargs parameter in a Python function definition.
+    VarKeyword = 5
+
+
+def inspect_to_reflect_parameter_kind(kind):
+    if kind == Parameter.POSITIONAL_ONLY:
+        return ParameterKind.PositionalOnly
+    if kind == Parameter.POSITIONAL_OR_KEYWORD:
+        return ParameterKind.PositionalOrKeyword
+    if kind == Parameter.VAR_POSITIONAL:
+        return ParameterKind.VarPositional
+    if kind == Parameter.KEYWORD_ONLY:
+        return ParameterKind.KeywordOnly
+    if kind == Parameter.VAR_KEYWORD:
+        return ParameterKind.VarKeyword
+
+
+class ReflectedParameter:
     def __init__(self, parameter):
         self.parameter = parameter
+        self.name = parameter.name
         self.annotation = parameter.annotation
         self.default = parameter.default
+        self.kind = inspect_to_reflect_parameter_kind(parameter.kind)
 
     def has_annotation(self) -> bool:
         return not self.annotation is Signature.empty
@@ -284,7 +313,8 @@ class Function:
         self.signature = signature(function)
         self.return_annotation = self.signature.return_annotation
         self.parameters = [
-            Parameter(parameter) for parameter in self.signature.parameters.values()
+            ReflectedParameter(parameter)
+            for parameter in self.signature.parameters.values()
         ]
 
     def has_return_annotation(self) -> bool:

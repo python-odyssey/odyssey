@@ -24,6 +24,7 @@ from odyssey.reflect import (
     reflect_class,
     reflect_value,
     reflect_function,
+    ParameterKind,
 )
 from os.path import join, realpath, dirname
 from collections import Counter
@@ -376,5 +377,42 @@ def test_reflect_identity_function():
     assert not function.has_return_annotation()
     assert function.invoke("value") == "value"
     for parameter in function.parameters:
+        assert not parameter.has_default()
+        assert not parameter.has_annotation()
+        assert parameter.kind == ParameterKind.PositionalOrKeyword
+
+
+def test_reflect_parameter_kind_function():
+    module_file = reflect_module_file(module_four_path)
+    loaded_module = module_file.load()
+    function = reflect_function(loaded_module.parameter_kind_function)
+
+    assert not function.has_return_annotation()
+    parameters = function.parameters
+    print(parameters)
+    assert parameters[0].kind == ParameterKind.PositionalOnly
+    assert parameters[1].kind == ParameterKind.PositionalOrKeyword
+    assert parameters[2].kind == ParameterKind.VarPositional
+    assert parameters[3].kind == ParameterKind.KeywordOnly
+    assert parameters[4].kind == ParameterKind.VarKeyword
+    # In current versions of python you can only specify positional_or_keyword
+    # parameters using their positional variant in this complex scenario.
+    assert function.invoke(
+        "value1",
+        "value2",
+        "value3",
+        "value4",
+        keyword_only="value5",
+        var_keyword1="value6",
+        var_keyword2="value7",
+    ) == (
+        "value1",
+        "value2",
+        "value3",
+        "value4",
+        "value5",
+        {"var_keyword1": "value6", "var_keyword2": "value7"},
+    )
+    for parameter in parameters:
         assert not parameter.has_default()
         assert not parameter.has_annotation()

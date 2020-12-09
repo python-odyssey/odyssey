@@ -1,5 +1,5 @@
-from sys import version_info
-
+from sys import version_info, path
+from os.path import dirname, realpath, join
 
 def simplest_function():
     pass
@@ -13,18 +13,11 @@ def identity_function(value):
     return value
 
 
-def parameter_kind_function(
-    positional_only,
-    /,
-    positional_or_keyword,
-    *var_positional,
-    keyword_only,
-    **var_keyword,
-):
-    return (
-        positional_only,
-        positional_or_keyword,
-        *var_positional,
-        keyword_only,
-        var_keyword,
-    )
+path.append(realpath(join(dirname(realpath(__file__)), "..")))
+
+if version_info.major >= 3 and version_info.minor >= 7:
+    from package_one.module_four_compatibility.module_four_37 import parameter_kind_function
+elif version_info.major >= 3 and version_info.minor >= 6:
+    from package_one.module_four_compatibility.module_four_36 import parameter_kind_function
+else:
+    raise SyntaxError()

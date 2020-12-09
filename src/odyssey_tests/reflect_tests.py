@@ -280,7 +280,7 @@ def test_reflect_directory_one():
 
 
 def test_reflect_package_one():
-    expected = ["module_four", "module_three"]
+    expected = ["module_four", "module_four_compatibility", "module_three"]
     package = reflect_package(package_one_path)
 
     result = package.names

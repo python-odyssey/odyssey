@@ -280,7 +280,7 @@ class ParameterKind(Enum):
 
 
 def inspect_to_reflect_parameter_kind(kind):
-    if kind == Parameter.POSITIONAL_ONLY:
+    if hasattr(Parameter,"POSITIONAL_ONLY") and kind == Parameter.POSITIONAL_ONLY:
         return ParameterKind.PositionalOnly
     if kind == Parameter.POSITIONAL_OR_KEYWORD:
         return ParameterKind.PositionalOrKeyword

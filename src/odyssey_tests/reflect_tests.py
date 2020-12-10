@@ -28,6 +28,7 @@ from odyssey.reflect import (
 )
 from os.path import join, realpath, dirname
 from collections import Counter
+from sys import version_info
 
 
 def free_function():
@@ -389,11 +390,17 @@ def test_reflect_parameter_kind_function():
 
     assert not function.has_return_annotation()
     parameters = function.parameters
-    assert parameters[0].kind == ParameterKind.PositionalOnly
-    assert parameters[1].kind == ParameterKind.PositionalOrKeyword
-    assert parameters[2].kind == ParameterKind.VarPositional
-    assert parameters[3].kind == ParameterKind.KeywordOnly
-    assert parameters[4].kind == ParameterKind.VarKeyword
+    if version_info.major >= 3 and version_info.minor >= 7:
+        assert parameters[0].kind == ParameterKind.PositionalOnly
+        assert parameters[1].kind == ParameterKind.PositionalOrKeyword
+        assert parameters[2].kind == ParameterKind.VarPositional
+        assert parameters[3].kind == ParameterKind.KeywordOnly
+        assert parameters[4].kind == ParameterKind.VarKeyword
+    else:
+        assert parameters[0].kind == ParameterKind.PositionalOrKeyword
+        assert parameters[1].kind == ParameterKind.VarPositional
+        assert parameters[2].kind == ParameterKind.KeywordOnly
+        assert parameters[3].kind == ParameterKind.VarKeyword
 
     # In current versions of python you can only specify positional_or_keyword
     # parameters using their positional variant in this complex scenario.

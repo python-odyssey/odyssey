@@ -29,10 +29,18 @@ def test_assignment_regex():
 
 
 def test_parse():
-    arguments = ["dragons", "and", "things", "--first-flag", "--Second-Flag", "value", "--first-assignment=first", "--Second-Assignment=second"]
+    arguments = [
+        "dragons",
+        "and",
+        "things",
+        "--first-flag",
+        "--Second-Flag",
+        "value",
+        "--first-assignment=first",
+        "--Second-Assignment=second",
+    ]
 
     parsed_arguments = parse_arguments(arguments)
-
 
     assert parsed_arguments[0].kind == ArgumentKind.Positional
     assert parsed_arguments[0].value == "dragons"

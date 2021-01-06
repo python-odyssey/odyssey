@@ -24,6 +24,7 @@ from odyssey.reflect import (
     reflect_class,
     reflect_value,
     reflect_function,
+    reflect_parameter,
     ParameterKind,
 )
 from os.path import join, realpath, dirname

@@ -293,12 +293,14 @@ def inspect_to_reflect_parameter_kind(kind):
 
 
 class ReflectedParameter:
-    def __init__(self, parameter):
+    empty_annotation = Signature.empty
+
+    def __init__(self, parameter, name, annotation, default, kind):
         self.parameter = parameter
-        self.name = parameter.name
-        self.annotation = parameter.annotation
-        self.default = parameter.default
-        self.kind = inspect_to_reflect_parameter_kind(parameter.kind)
+        self.name = name
+        self.annotation = annotation
+        self.default = default
+        self.kind = kind
 
     def has_annotation(self) -> bool:
         return not self.annotation is Signature.empty
@@ -307,13 +309,23 @@ class ReflectedParameter:
         return not self.default is Signature.empty
 
 
+def reflect_parameter(parameter):
+    return ReflectedParameter(
+        parameter=parameter,
+        name=parameter.name,
+        annotation=parameter.annotation,
+        default=parameter.default,
+        kind=inspect_to_reflect_parameter_kind(parameter.kind),
+    )
+
+
 class Function:
     def __init__(self, function):
         self.function = function
         self.signature = signature(function)
         self.return_annotation = self.signature.return_annotation
         self.parameters = [
-            ReflectedParameter(parameter)
+            reflect_parameter(parameter)
             for parameter in self.signature.parameters.values()
         ]
 

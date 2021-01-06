@@ -1,8 +1,5 @@
 import re
-from enum import (
-    Enum,
-    unique
-)
+from enum import Enum, unique
 
 
 @unique
@@ -37,17 +34,15 @@ def parse_arguments(arguments):
         # Flags
         matches = flag_regex.match(argument)
         if matches:
-            name = matches.groups(1)[0].replace("-","_").lower()
+            name = matches.groups(1)[0].replace("-", "_").lower()
             parsed_arguments.append(Argument(name, i, ArgumentKind.Flag, None))
             continue
         # Assignments
         matches = assignment_regex.match(argument)
         if matches:
-            name = matches.groups(1)[0].replace("-","_").lower()
+            name = matches.groups(1)[0].replace("-", "_").lower()
             value = matches.groups(1)[1]
             parsed_arguments.append(Argument(name, i, ArgumentKind.Assignment, value))
             continue
         parsed_arguments.append(Argument(None, i, ArgumentKind.Positional, argument))
     return parsed_arguments
-
-

@@ -43,6 +43,10 @@ odyssey is a cross-platform cross-architecture cross-scm workspace management to
     :target: https://python-odyssey.readthedocs.io/en/latest/index.html
     :alt: Documentation Status
 
+.. image:: https://snyk.io/test/github/python-odyssey/odyssey/badge.svg?targetFile=requirements.txt
+    :target: https://app.snyk.io/org/godwinnelorayne/project/0903f49e-6b81-4892-8b2a-0b532c571285
+    :alt: Snyk Status
+
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
     :target: https://github.com/psf/black
 

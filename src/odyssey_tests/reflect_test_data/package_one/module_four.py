@@ -20,9 +20,7 @@ if version_info.major >= 3 and version_info.minor >= 8:
     from package_one.module_four_compatibility.module_four_38 import (
         parameter_kind_function,
     )
-elif version_info.major >= 3 and version_info.minor >= 7:
+else:
     from package_one.module_four_compatibility.module_four_37 import (
         parameter_kind_function,
     )
-else:
-    raise SyntaxError()

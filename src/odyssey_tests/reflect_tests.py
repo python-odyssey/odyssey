@@ -391,7 +391,7 @@ def test_reflect_parameter_kind_function():
 
     assert not function.has_return_annotation()
     parameters = function.parameters
-    if version_info.major >= 3 and version_info.minor >= 7:
+    if version_info.major >= 3 and version_info.minor >= 8:
         assert parameters[0].kind == ParameterKind.PositionalOnly
         assert parameters[1].kind == ParameterKind.PositionalOrKeyword
         assert parameters[2].kind == ParameterKind.VarPositional

@@ -11,6 +11,9 @@ odyssey is a cross-platform cross-architecture cross-scm workspace management to
 .. image:: https://img.shields.io/badge/architecture-x86%20%7C%20amd64%20%7C%20arm64-lightgrey
     :alt: Supported CPU Architectures
 
+.. image:: https://img.shields.io/badge/python-3.6%20%7C%203.7%20%7C%203.8-lightgrey
+    :alt: Supported Python Versions
+
 .. image:: https://img.shields.io/github/v/release/python-odyssey/odyssey
     :target: https://github.com/python-odyssey/odyssey/releases
     :alt: GitHub Release

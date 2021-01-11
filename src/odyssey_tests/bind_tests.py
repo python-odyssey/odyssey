@@ -19,6 +19,7 @@ from odyssey_tests.bind_test_data import (
     keyword_only_parameter,
     var_keyword_parameter,
     simple_function,
+    parameter_type_function,
 )
 
 
@@ -92,3 +93,21 @@ def test_bind_arguments_empty():
     result = bound_function.invoke()
 
     assert expected == result
+
+
+def test_bind_parameter_type_function():
+    arguments = ["are", "--positional-or-keyword=dragons", "the", "--keyword-only=best"]
+    expected = {
+        "positional_or_keyword": "dragons",
+        "var_positional": ("are", "the"),
+        "keyword_only": "best",
+        "var_keyword": {}
+    }
+
+    reflected_function = reflect_function(parameter_type_function)
+    parsed_arguments = parse_arguments(arguments)
+    bound_function = bind_arguments(reflected_function, parsed_arguments)
+    result = bound_function.invoke()
+
+    assert expected == result
+

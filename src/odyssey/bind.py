@@ -110,4 +110,13 @@ def bind_arguments(reflected_function: Function, parsed_arguments: list):
             bound_args.append(
                 bind_positional_or_keyword(parameter, parsed_arguments, consume_list)
             )
+        if parameter.kind == ParameterKind.VarPositional:
+            bound_args.extend(
+                bind_var_positional(parameter, parsed_arguments, consume_list)
+            )
+        if parameter.kind == ParameterKind.KeywordOnly:
+            key, value = bind_keyword_only(parameter, parsed_arguments, consume_list)
+            bound_kwargs[key] = value
+        if parameter.kind == ParameterKind.VarKeyword:
+            bound_kwargs.update(bind_var_keyword(parameter, parsed_arguments, consume_list))
     return BoundFunction(reflected_function, parsed_arguments, bound_args, bound_kwargs)

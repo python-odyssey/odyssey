@@ -134,15 +134,22 @@ class ReflectType(Enum):
     Value = 7
 
 
-class Reflected:
-    def __init__(self, reflect_type, name, value):
-        self.reflect_type = reflect_type
-        self.name = name
-        self.value = value
-
-
-def reflect_directory(path):
-    result = []
+def reflect_type(obj):
+    if isinstance(obj, str):
+        if is_directory(obj):
+            return ReflectType.Directory
+        if is_package(obj):
+            return ReflectType.Package
+        if is_module_file(obj):
+            return ReflectType.ModuleFile
+        return ReflectType.Value
+    if is_module(obj):
+        return ReflectType.Module
+    if is_class(obj):
+        return ReflectType.Class
+    if is_function(obj):
+        return ReflectType.Function
+    return ReflectType.Value
 
 
 def is_private_name(name) -> bool:

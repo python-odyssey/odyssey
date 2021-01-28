@@ -96,12 +96,18 @@ def test_bind_arguments_empty():
 
 
 def test_bind_parameter_type_function():
-    arguments = ["are", "--positional-or-keyword=dragons", "the", "--keyword-only=best"]
+    arguments = [
+        "--var-keyword-one=really",
+        "are",
+        "--positional-or-keyword=dragons",
+        "the",
+        "--keyword-only=best",
+    ]
     expected = {
         "positional_or_keyword": "dragons",
         "var_positional": ("are", "the"),
         "keyword_only": "best",
-        "var_keyword": {}
+        "var_keyword": {"var_keyword_one": "really"},
     }
 
     reflected_function = reflect_function(parameter_type_function)
@@ -110,4 +116,3 @@ def test_bind_parameter_type_function():
     result = bound_function.invoke()
 
     assert expected == result
-

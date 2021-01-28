@@ -63,7 +63,7 @@ def bind_var_positional(parameter, parsed_arguments: list, consume_list: list):
             continue
         argument = parsed_arguments[i]
         if argument.kind != ArgumentKind.Positional:
-            return result
+            continue
         consume_list[i] = True
         result.append(argument.value)
 
@@ -118,5 +118,7 @@ def bind_arguments(reflected_function: Function, parsed_arguments: list):
             key, value = bind_keyword_only(parameter, parsed_arguments, consume_list)
             bound_kwargs[key] = value
         if parameter.kind == ParameterKind.VarKeyword:
-            bound_kwargs.update(bind_var_keyword(parameter, parsed_arguments, consume_list))
+            bound_kwargs.update(
+                bind_var_keyword(parameter, parsed_arguments, consume_list)
+            )
     return BoundFunction(reflected_function, parsed_arguments, bound_args, bound_kwargs)

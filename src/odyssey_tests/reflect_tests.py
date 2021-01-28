@@ -17,6 +17,8 @@ from odyssey.reflect import (
     get_classes,
     get_functions,
     get_values,
+    ReflectType,
+    reflect_type,
     reflect_directory,
     reflect_package,
     reflect_module_file,
@@ -246,6 +248,22 @@ def test_get_values():
     result = get_values(module_three)
 
     assert expected in result
+
+
+def test_reflect_type_directory():
+    expected = ReflectType.Directory
+
+    result = reflect_type(directory_one_path)
+
+    assert expected == result
+
+
+def test_reflect_type_package():
+    expected = ReflectType.Package
+
+    result = reflect_type(package_one_path)
+
+    assert expected == result
 
 
 def test_reflect_directory():

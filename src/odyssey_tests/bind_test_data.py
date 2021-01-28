@@ -53,10 +53,12 @@ def simple_function():
     pass
 
 
-def parameter_type_function(positional_or_keyword, *var_positional, keyword_only, **var_keyword):
+def parameter_type_function(
+    positional_or_keyword, *var_positional, keyword_only, **var_keyword
+):
     return {
         "positional_or_keyword": positional_or_keyword,
         "var_positional": var_positional,
         "keyword_only": keyword_only,
-        "var_keyword": var_keyword
+        "var_keyword": var_keyword,
     }

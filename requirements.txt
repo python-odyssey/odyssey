@@ -33,7 +33,7 @@ importlib-resources==4.1.1; python_version >= "3.6" and python_full_version < "3
 invoke==1.5.0
 isort==5.7.0; python_version >= "3.6" and python_version < "4.0"
 jeepney==0.6.0; sys_platform == "linux" and python_version >= "3.6"
-jinja2==2.11.2; python_version >= "3.5" and python_full_version < "3.0.0" or python_full_version >= "3.5.0" and python_version >= "3.5"
+jinja2==2.11.3; python_version >= "3.5" and python_full_version < "3.0.0" or python_full_version >= "3.5.0" and python_version >= "3.5"
 keyring==21.8.0; python_version >= "3.6"
 lazy-object-proxy==1.4.3; python_version >= "3.5" and python_full_version < "3.0.0" or python_full_version >= "3.4.0" and python_version >= "3.5"
 lxml==4.6.2; (python_version >= "2.7" and python_full_version < "3.0.0") or (python_full_version >= "3.5.0")

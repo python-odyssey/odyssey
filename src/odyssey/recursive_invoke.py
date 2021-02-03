@@ -24,4 +24,4 @@ class Invocable:
 
 
 def recurse(start, arguments):
-    pass
+    return Invocable()

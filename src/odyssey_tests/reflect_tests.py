@@ -91,14 +91,14 @@ def test_is_method_with_bound_self():
     assert not is_method_with_bound_self(example_lambda)
 
 
-reflect_tests_directory = dirname(realpath(__file__))
-reflect_tests_data = join(reflect_tests_directory, "reflect_test_data")
-directory_one_path = join(reflect_tests_data, "directory_one")
-directory_two_path = join(reflect_tests_data, "directory_two")
-directory_three_path = join(reflect_tests_data, "directory_three")
-package_one_path = join(reflect_tests_data, "package_one")
-package_two_path = join(reflect_tests_data, "package_two")
-package_three_path = join(reflect_tests_data, "package_three")
+tests_directory = dirname(realpath(__file__))
+test_data_directory = join(tests_directory, "test_data")
+directory_one_path = join(test_data_directory, "directory_one")
+directory_two_path = join(test_data_directory, "directory_two")
+directory_three_path = join(test_data_directory, "directory_three")
+package_one_path = join(test_data_directory, "package_one")
+package_two_path = join(test_data_directory, "package_two")
+package_three_path = join(test_data_directory, "package_three")
 
 module_one_path = join(directory_one_path, "module_one.py")
 module_two_path = join(directory_one_path, "module_two.py")
@@ -127,7 +127,7 @@ def test_is_package():
 def test_list_directories():
     expected = [directory_one_path, directory_two_path, directory_three_path]
 
-    result = list_directories(reflect_tests_data)
+    result = list_directories(test_data_directory)
 
     assert Counter(expected) == Counter(result)
 
@@ -135,7 +135,7 @@ def test_list_directories():
 def test_list_packages():
     expected = [package_one_path, package_two_path, package_three_path]
 
-    result = list_packages(reflect_tests_data)
+    result = list_packages(test_data_directory)
 
     assert Counter(expected) == Counter(result)
 
@@ -267,7 +267,7 @@ def test_reflect_type_package():
 
 
 def test_reflect_directory():
-    directory = reflect_directory(reflect_tests_data)
+    directory = reflect_directory(test_data_directory)
 
     print(directory.names)
 
@@ -283,7 +283,7 @@ def test_reflect_directory():
         "package_three",
         "package_two",
     ]
-    directory = reflect_directory(reflect_tests_data)
+    directory = reflect_directory(test_data_directory)
 
     result = directory.names
 

@@ -10,7 +10,10 @@ jobs:
       - image: circleci/python:3.6.12
     steps:
       - checkout
-      - run: 
+      - run:
+          name: Install rust
+          command: sudo apt-get install --yes rustc cargo
+      - run:
           name: "Set environment variables"
           command: echo 'export TOXENV=py36' >> $BASH_ENV
       - run:
@@ -34,6 +37,9 @@ jobs:
       - image: circleci/python:3.8.7
     steps:
       - checkout
+      - run:
+          name: Install rust
+          command: sudo apt-get install --yes rustc cargo
       - run: 
           name: "Set environment variables"
           command: echo 'export TOXENV=py38' >> $BASH_ENV

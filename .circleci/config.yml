@@ -7,7 +7,7 @@ orbs:
 jobs:
   build-and-test-3-6-12:
     docker:
-      - image: circleci/python:3.6.12
+      - image: circleci/python:3.6.12-buster
     steps:
       - checkout
       - run:
@@ -34,7 +34,7 @@ jobs:
       - slack/status
   build-and-test-3-8-7:
     docker:
-      - image: circleci/python:3.8.7
+      - image: circleci/python:3.8.7-buster
     steps:
       - checkout
       - run:

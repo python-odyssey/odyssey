@@ -12,7 +12,7 @@ jobs:
       - checkout
       - run:
           name: Install rust
-          command: sudo apt-get install --yes rustc cargo
+          command: sudo curl https://sh.rustup.rs -sSf | sudo sh -s -- -y
       - run:
           name: "Set environment variables"
           command: echo 'export TOXENV=py36' >> $BASH_ENV
@@ -39,7 +39,7 @@ jobs:
       - checkout
       - run:
           name: Install rust
-          command: sudo apt-get install --yes rustc cargo
+          command: sudo curl https://sh.rustup.rs -sSf | sudo sh -s -- -y
       - run: 
           name: "Set environment variables"
           command: echo 'export TOXENV=py38' >> $BASH_ENV

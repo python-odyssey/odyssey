@@ -14,11 +14,8 @@ jobs:
           name: Install rust
           command: sudo curl https://sh.rustup.rs -sSf | sudo sh -s -- -y
       - run:
-          name: Update pip
-          command: sudo pip install --upgrade pip
-      - run:
           name: "Set environment variables"
-          command: echo 'export TOXENV=py36' >> $BASH_ENV; echo 'source $HOME/.cargo/env' >> $BASH_ENV;
+          command: echo 'export TOXENV=py36' >> $BASH_ENV
       - run:
           name: Install poetry
           command: bin/install_poetry.sh

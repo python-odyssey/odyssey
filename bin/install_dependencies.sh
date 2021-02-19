@@ -14,4 +14,5 @@ if [[ -z "${VIRTUAL_ENVIRONMENT}" ]]; then
   poetry env use $PYTHON_EXECUTABLE
 fi
 
+poetry run pip install --upgrade pip
 poetry install

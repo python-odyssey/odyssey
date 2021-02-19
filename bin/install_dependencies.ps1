@@ -3,4 +3,5 @@ if (!(Test-Path $Env:PYTHON_EXECUTABLE)) {
 }
 
 poetry env use $Env:PYTHON_EXECUTABLE;
+poetry run pip install --upgrade pip;
 poetry install;

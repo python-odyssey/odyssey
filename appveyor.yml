@@ -13,28 +13,24 @@
             - configuration: Python36_32
         environment:
           PYTHON_EXECUTABLE: C:\Python36\python.exe
-          TOXENV: py36
       -
         matrix:
           only:
             - configuration: Python36_64
         environment:
           PYTHON_EXECUTABLE: C:\Python36-x64\python.exe
-          TOXENV: py36
       -
         matrix:
           only:
             - configuration: Python38_32
         environment:
           PYTHON_EXECUTABLE: C:\Python38\python.exe
-          TOXENV: py38
       -
         matrix:
           only:
             - configuration: Python38_64
         environment:
           PYTHON_EXECUTABLE: C:\Python38-x64\python.exe
-          TOXENV: py38
 
     build: off
 
@@ -44,10 +40,10 @@
       - ps: bin/install_dependencies.ps1
 
     test_script:
-      - ps: bin/run_tox.ps1
+      - ps: bin/run_pytest.ps1
 
     after_test:
-      - ps: bin/build.ps1
+      - ps: bin/build_package.ps1
       - ps: bin/run_readme_check.ps1
       - ps: bin/build_executable.ps1
 

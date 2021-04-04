@@ -1,6 +1,8 @@
-if (!(Test-Path $Env:PYTHON_EXECUTABLE)) {
-    throw "Env:PYTHON_EXECUTABLE is missing!"
+Set-Location $PSScriptRoot
+try {
+    .\activate_env.ps1
 }
-
-poetry env use $Env:PYTHON_EXECUTABLE;
+finally {
+    Pop-Location
+}
 poetry run python $PSScriptRoot\create_release.py

@@ -5,5 +5,4 @@ try {
 finally {
     Pop-Location
 }
-poetry run pip install --upgrade pip
-poetry install
+poetry build

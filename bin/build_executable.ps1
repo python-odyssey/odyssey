@@ -1,4 +1,4 @@
-Set-Location $PSScriptRoot
+Push-Location $PSScriptRoot
 try {
     .\activate_env.ps1
 }

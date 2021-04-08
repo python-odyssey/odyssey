@@ -1,7 +1,5 @@
 FROM python:3.8-alpine
 
-ENV TOXENV=py38
-
 RUN apk add --no-cache --upgrade bash
 
 ENTRYPOINT ["/bin/bash"]

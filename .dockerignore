@@ -1,6 +1,7 @@
 # Ignore everything
 **
 
+!docker/**
 !.codeship/Dockerfile
 !bin/**
 !src/**

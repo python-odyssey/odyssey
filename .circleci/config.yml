@@ -14,17 +14,14 @@ jobs:
           name: Install rust
           command: sudo curl https://sh.rustup.rs -sSf | sudo sh -s -- -y
       - run:
-          name: "Set environment variables"
-          command: echo 'export TOXENV=py36' >> $BASH_ENV
-      - run:
           name: Install poetry
           command: bin/install_poetry.sh
       - run:
           name: Install dependencies
           command: bin/install_dependencies.sh
       - run:
-          name: Run tox
-          command: bin/run_tox.sh
+          name: Run pytest
+          command: bin/run_pytest.sh
       - run:
           name: Build binaries
           command: bin/build.sh
@@ -40,9 +37,6 @@ jobs:
       - run:
           name: Install rust
           command: sudo curl https://sh.rustup.rs -sSf | sudo sh -s -- -y
-      - run: 
-          name: "Set environment variables"
-          command: echo 'export TOXENV=py38' >> $BASH_ENV
       - run:
           name: Install poetry
           command: bin/install_poetry.sh
@@ -50,8 +44,8 @@ jobs:
           name: Install dependencies
           command: bin/install_dependencies.sh
       - run:
-          name: Run tox
-          command: bin/run_tox.sh
+          name: Run pytest
+          command: bin/run_pytest.sh
       - run:
           name: Build binaries
           command: bin/build.sh

@@ -4,14 +4,13 @@ jobs:
     osx_image: xcode12
     language: generic
     env:
-      - TOXENV=py38
       - PYTHON_EXECUTABLE=python3
 install:
   - if [ $TRAVIS_CPU_ARCH = arm64 ]; then python -m pip install --upgrade pip; fi
   - bin/install_poetry.sh
   - bin/install_dependencies.sh
 script:
-  - bin/run_tox.sh
+  - bin/run_pytest.sh
   - bin/build.sh
   - bin/build_executable.sh
 after_success:

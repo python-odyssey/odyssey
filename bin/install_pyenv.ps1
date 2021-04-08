@@ -6,7 +6,7 @@ Write-Verbose "choco install directory: $Env:ChocolateyInstall"
 
 "Yes" | choco install pyenv-win --yes
 
-$PyEnvHome = Join-Path "$env:USERPROFILE" ".pyenv" "pyenv-win"
+$PyEnvHome = Join-Path -Path "$env:USERPROFILE" -ChildPath ".pyenv/pyenv-win"
 
 [System.Environment]::SetEnvironmentVariable("PYENV", $PyEnvHome, "User")
 [System.Environment]::SetEnvironmentVariable("PYENV_HOME", $PyEnvHome, "User")

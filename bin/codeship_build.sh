@@ -3,14 +3,14 @@
 set -e
 
 if [[ "$OSTYPE" == "linux-gnu"* ]] || [[ "$OSTYPE" == "linux-musl"* ]]; then
-    BIN_DIRECTORY=$(dirname "$(readlink -f "$0")")
+    BIN=$(dirname "$(readlink -f "$0")")
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-    BIN_DIRECTORY=$(dirname "$(greadlink -f "$0")")
+    BIN=$(dirname "$(greadlink -f "$0")")
 fi
-echo BIN_DIRECTORY: $BIN_DIRECTORY
+echo BIN: $BIN
 
-$BIN_DIRECTORY/install_poetry.sh
-$BIN_DIRECTORY/install_dependencies.sh
-$BIN_DIRECTORY/run_pytest.sh
-$BIN_DIRECTORY/build.sh
-$BIN_DIRECTORY/build_executable.sh
+. $BIN/install_poetry.sh
+$BIN/install_dependencies.sh
+$BIN/run_pytest.sh
+$BIN/build.sh
+$BIN/build_executable.sh

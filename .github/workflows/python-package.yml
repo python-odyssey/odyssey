@@ -16,16 +16,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Install dependencies
+    - name: Build
       run: |
-        bin/install_poetry.sh
+        . bin/install_poetry.sh
         bin/install_dependencies.sh
-    - name: Test
-      run: |
         bin/run_pytest.sh
-    - name: Build binaries
-      run: |
         bin/build.sh
-    - name: Build executable
-      run: |
         bin/build_executable.sh

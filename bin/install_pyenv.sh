@@ -1,9 +1,9 @@
 curl https://pyenv.run | bash
 
-echo "" >> ~/.profile
-echo "# Automatically setup pyenv" >> ~/.profile
-echo "export PATH=\"/root/.pyenv/bin:\$PATH\"" >> ~/.profile
-echo "eval \"\$(pyenv init -)\"" >> ~/.profile
-echo "eval \"\$(pyenv virtualenv-init -)\"" >> ~/.profile
+echo "" >> ~/.bashrc
+echo "# Automatically setup pyenv" >> ~/.bashrc
+echo "export PATH=\"/root/.pyenv/bin:\$PATH\"" >> ~/.bashrc
+echo "eval \"\$(pyenv init -)\"" >> ~/.bashrc
+echo "eval \"\$(pyenv virtualenv-init -)\"" >> ~/.bashrc
 
-. ~/.profile
+. ~/.bashrc

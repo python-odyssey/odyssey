@@ -1,5 +1,7 @@
 param (
     [String]
+    $ContainerCategory,
+    [String]
     $ContainerName,
     [Switch]
     $Test = $False
@@ -12,12 +14,12 @@ if ($ContainerName -match "windows") {
 }
 else {
     $ContainerPath = "/mnt/odyssey"
-    $ContainerCommand = @("sh", "-c", ". ~/.profile && ./bin/install_dependencies.sh && ./bin/run_pytest.sh")
+    $ContainerCommand = @("bash", "-c", ". ~/.bashrc && ./bin/install_dependencies.sh && ./bin/run_pytest.sh")
 }
 
 if ($Test) {
-    docker run --interactive --tty --volume "$HostPath`:$ContainerPath" odyssey/$ContainerName @ContainerCommand
+    docker run --interactive --tty --volume "$HostPath`:$ContainerPath" odyssey/$ContainerCategory/$ContainerName @ContainerCommand
 }
 else {
-    docker run --interactive --tty --volume "$HostPath`:$ContainerPath" odyssey/$ContainerName
+    docker run --interactive --tty --volume "$HostPath`:$ContainerPath" odyssey/$ContainerCategory/$ContainerName
 }

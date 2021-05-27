@@ -29,16 +29,14 @@ class PatternStyle(IntFlag):
     will be accepted during parsing.
     """
 
-    # Syntax
+    # Flag
     SINGLE_LETTER_FLAG = auto()
-    MULTIPLE_LETTER_FLAG = auto()
     SINGLE_DASH_FLAG = auto()
     DOUBLE_DASH_FLAG = auto()
     SINGLE_SLASH_FLAG = auto()
-    DOUBLE_DASH_EQUALS_ASSIGNMENT = auto()
-    DOUBLE_DASH_COLON_ASSIGNMENT = auto()
-    SINGLE_SLASH_EQUALS_ASSIGNMENT = auto()
-    SINGLE_SLASH_COLON_ASSIGNMENT = auto()
+    # Assignment
+    EQUALS_ASSIGNMENT = auto()
+    COLON_ASSIGNMENT = auto()
     # Name
     NAME_LOWERCASE_LETTERS = auto()
     NAME_UPPERCASE_LETTERS = auto()
@@ -52,7 +50,7 @@ PatternStyle.NAME_LETTERS = (
     PatternStyle.NAME_LOWERCASE_LETTERS | PatternStyle.NAME_UPPERCASE_LETTERS
 )
 PatternStyle.DEFAULT_SYNTAX = (
-    PatternStyle.DOUBLE_DASH_FLAG | PatternStyle.DOUBLE_DASH_EQUALS_ASSIGNMENT
+    PatternStyle.DOUBLE_DASH_FLAG | PatternStyle.EQUALS_ASSIGNMENT
 )
 PatternStyle.DEFAULT_NAME = (
     PatternStyle.NAME_LOWERCASE_LETTERS | PatternStyle.NAME_DASHES
@@ -61,15 +59,89 @@ PatternStyle.DEFAULT = PatternStyle.DEFAULT_SYNTAX | PatternStyle.DEFAULT_NAME
 
 
 def get_regex_string(pattern_style):
-    if (
-        pattern_style & PatternStyle.MULTIPLE_LETTER_FLAG
-        and pattern_style & SINGLE_DASH_FLAG
-    ):
-        raise ValueError(
-            "Parsing of both multiple letter flags and single dash flags is not supported."
-        )
+    lowercase = "a-z"
+    uppercase = "A-Z"
+    numbers = "0-9"
+    dashes = "-"
+    underscores = "_"
 
-    return "-(?P<name>[a-z])"
+    name_patterns = ""
+    if pattern_style & PatternStyle.NAME_LOWERCASE_LETTERS:
+        name_patterns += lowercase
+    if pattern_style & PatternStyle.NAME_UPPERCASE_LETTERS:
+        name_patterns += uppercase
+    if pattern_style & PatternStyle.NAME_NUMBERS:
+        name_patterns += numbers
+    if pattern_style & PatternStyle.NAME_DASHES:
+        name_patterns += dashes
+    if pattern_style & PatternStyle.NAME_UNDERSCORES:
+        name_patterns += underscores
+
+    if name_patterns:
+        name_pattern = f"[{name_patterns}]"
+    else:
+        name_pattern = ""
+
+    single_dash = "-"
+    double_dash = "--"
+    single_slash = "/"
+    flag_patterns = list()
+    if (
+        pattern_style & PatternStyle.SINGLE_LETTER_FLAG
+        or pattern_style & PatternStyle.SINGLE_DASH_FLAG
+    ):
+        flag_patterns.append(single_dash)
+    if pattern_style & PatternStyle.DOUBLE_DASH_FLAG:
+        flag_patterns.append(double_dash)
+    if pattern_style & PatternStyle.SINGLE_SLASH_FLAG:
+        flag_patterns.append(single_slash)
+
+    name_count = ""
+    if pattern_style & PatternStyle.SINGLE_LETTER_FLAG and (
+        pattern_style & PatternStyle.SINGLE_DASH_FLAG
+        or pattern_style & PatternStyle.DOUBLE_DASH_FLAG
+        or pattern_style & PatternStyle.SINGLE_SLASH_FLAG
+    ):
+        name_count = r"{1,}"
+    elif pattern_style & PatternStyle.SINGLE_LETTER_FLAG and not (
+        pattern_style & PatternStyle.SINGLE_DASH_FLAG
+        or pattern_style & PatternStyle.DOUBLE_DASH_FLAG
+        or pattern_style & PatternStyle.SINGLE_SLASH_FLAG
+    ):
+        name_count = r"{1}"
+    elif not pattern_style & PatternStyle.SINGLE_LETTER_FLAG and (
+        pattern_style & PatternStyle.SINGLE_DASH_FLAG
+        or pattern_style & PatternStyle.DOUBLE_DASH_FLAG
+        or pattern_style & PatternStyle.SINGLE_SLASH_FLAG
+    ):
+        name_count = r"{2,}"
+
+    print(flag_patterns)
+
+    if flag_patterns:
+        flag_pattern = "(?:" + "|".join(flag_patterns) + ")"
+    else:
+        flag_pattern = ""
+
+    equals = "="
+    colon = ":"
+    assignment_patterns = list()
+    if pattern_style & PatternStyle.EQUALS_ASSIGNMENT:
+        assignment_patterns.append(equals)
+    if pattern_style & PatternStyle.COLON_ASSIGNMENT:
+        assignment_patterns.append(colon)
+
+    if assignment_patterns:
+        assignment_pattern = "[" + "|".join(assignment_patterns) + "](?P<value>.*)"
+    else:
+        assignment_pattern = ""
+
+    if flag_pattern and name_pattern:
+        return f"{flag_pattern}(?P<name>{name_pattern}{name_count}){assignment_pattern}"
+
+    raise ValueError(
+        "flag_pattern should include at least one flag style and at least one name style"
+    )
 
 
 def get_compiled_regex(pattern_style):
@@ -79,17 +151,12 @@ def get_compiled_regex(pattern_style):
 def match_argument(compiled_regex, argument_string):
     match = compiled_regex.match(argument_string)
     groupdict = match.groupdict()
-    groupdict["argument"] = argument_string
-    return groupdict
+    return [groupdict]
 
 
 def match(pattern_style, argument_list):
     compiled_regex = get_compiled_regex(pattern_style)
-    return [
-        match_argument(compiled_regex, argument_string)
-        for argument_string in argument_list
-    ]
-
-
-# flag_regex = re.compile(r"--([a-zA-Z0-9-_]+)$")
-# assignment_regex = re.compile(r"--([a-zA-Z0-9-_]+)=(.*)")
+    result = list()
+    for argument_string in argument_list:
+        result.extend(match_argument(compiled_regex, argument_string))
+    return result

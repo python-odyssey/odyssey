@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from inspect import ismodule, isclass, getmembers, signature, Signature, Parameter
-from enum import Enum, unique
+from enum import Enum, unique, auto
 from os import scandir
 from os.path import isdir, isfile, join, splitext, basename, split
 from importlib.util import spec_from_file_location, module_from_spec
@@ -125,13 +125,13 @@ def get_values(module):
 
 @unique
 class ReflectType(Enum):
-    Directory = 1
-    Package = 2
-    ModuleFile = 3
-    Module = 4
-    Class = 5
-    Function = 6
-    Value = 7
+    Directory = auto()
+    Package = auto()
+    ModuleFile = auto()
+    Module = auto()
+    Class = auto()
+    Function = auto()
+    Value = auto()
 
 
 def reflect_type(obj):
@@ -275,15 +275,15 @@ def reflect_value(value):
 @unique
 class ParameterKind(Enum):
     # Value must be supplied as a positional argument. Positional only parameters are those which appear before a / entry (if present) in a Python function definition.
-    PositionalOnly = 1
+    PositionalOnly = auto()
     # Value may be supplied as either a keyword or positional argument (this is the standard binding behaviour for functions implemented in Python.)
-    PositionalOrKeyword = 2
+    PositionalOrKeyword = auto()
     # A tuple of positional arguments that aren’t bound to any other parameter. This corresponds to a *args parameter in a Python function definition.
-    VarPositional = 3
+    VarPositional = auto()
     # Value must be supplied as a keyword argument. Keyword only parameters are those which appear after a * or *args entry in a Python function definition.
-    KeywordOnly = 4
+    KeywordOnly = auto()
     # A dict of keyword arguments that aren’t bound to any other parameter. This corresponds to a **kwargs parameter in a Python function definition.
-    VarKeyword = 5
+    VarKeyword = auto()
 
 
 def inspect_to_reflect_parameter_kind(kind):

@@ -1,11 +1,13 @@
 """Functionality for binding a list of strings to a set of function parameters."""
 
-import odyssey.convert as convert
-from odyssey.reflect import (
+import odyssey.type_converter.convert as convert
+from odyssey.python_reflector.reflect import (
     Function,
     ParameterKind,
 )
-from odyssey.parse import ArgumentKind
+from odyssey.cli_parser.argument import (
+    ArgumentKind
+)
 
 # The rules herein determine how function parameters are parsed.
 # We support positional only parameters. They must come before all positional var parameters. They can support annotated implicit conversion.
@@ -13,6 +15,14 @@ from odyssey.parse import ArgumentKind
 # We support positional var parameters. They must appear after all positional only parameters. They cannot support annotated implicit conversion.
 # We support keyword only parameters. They can appear in any position. They can support annotated implicit conversion.
 # We support keyword var parameters. They can appear in any position. They cannot support annotated implicit conversion.
+
+
+class BoundParameter:
+    def __init__(self, parsed_arguments, reflected_parameter, name=None, value=None):
+        self.parsed_arguments = parsed_arguments
+        self.reflected_parameter = reflected_parameter
+        self.value = name
+        self.value = value
 
 
 class BoundFunction:
@@ -28,28 +38,21 @@ class BoundFunction:
         return self.function.invoke(*self.bound_args, **self.bound_kwargs)
 
 
-def bind_positional_only(parameter, parsed_arguments: list, consume_list: list):
-    assert len(parsed_arguments) == len(consume_list)
-    for i in range(len(parsed_arguments)):
-        if consume_list[i]:
-            continue
-        argument = parsed_arguments[i]
+def bind_positional_only(parameter, parsed_arguments: list):
+    for argument in parsed_arguments:
         if argument.kind == ArgumentKind.Positional:
-            consume_list[i] = True
-            return argument.value
+            return BoundParameter(
+                parsed_arguments=[argument],
+                reflected_parameter=parameter,
+                value=argument.value
+            )
 
-    raise None
+    raise Exception(f"No positional arguments available to bind to parameter {parameter.name}")
 
 
-def bind_positional_or_keyword(parameter, parsed_arguments: list, consume_list: list):
-    result = None
-    assert len(parsed_arguments) == len(consume_list)
-    for i in range(len(parsed_arguments)):
-        if consume_list[i]:
-            continue
-        argument = parsed_arguments[i]
+def bind_positional_or_keyword(parameter, parsed_arguments: list):
+    for argument in parsed_arguments:
         if argument.kind == ArgumentKind.Assignment and argument.name == parameter.name:
-            consume_list[i] = True
             return argument.value
 
     raise None

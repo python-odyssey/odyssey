@@ -1,5 +1,5 @@
 import pytest
-from odyssey.convert import (
+from odyssey.type_converter.convert import (
     to_string,
     to_int,
     to_float,

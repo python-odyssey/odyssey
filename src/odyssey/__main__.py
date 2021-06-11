@@ -4,11 +4,9 @@
 """The entrypoint for both poetry and PyInstaller.
 """
 
-import odyssey.cli
-
 
 def main():
-    odyssey.cli.main()
+    pass
 
 
 if __name__ == "__main__":

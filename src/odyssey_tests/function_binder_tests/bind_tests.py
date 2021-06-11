@@ -1,4 +1,4 @@
-from odyssey.bind import (
+from odyssey.function_binder.bind import (
     bind_positional_only,
     bind_positional_or_keyword,
     bind_var_positional,
@@ -6,13 +6,13 @@ from odyssey.bind import (
     bind_var_keyword,
     bind_arguments,
 )
-from odyssey.reflect import (
+from odyssey.python_reflector.reflect import (
     reflect_function,
     ReflectedParameter,
     ParameterKind,
 )
-from odyssey.parse import parse_arguments
-from odyssey_tests.bind_test_data import (
+from odyssey.cli_parser import parse_arguments
+from odyssey_tests.function_binder_tests.bind_test_data import (
     positional_only_parameter,
     positional_or_keyword_parameter,
     var_positional_parameter,
@@ -27,12 +27,10 @@ def test_bind_positional_only():
     reflected_parameter = positional_only_parameter
     arguments = ["value"]
     parsed_arguments = parse_arguments(arguments)
-    consume_list = [False]
 
-    result = bind_positional_only(reflected_parameter, parsed_arguments, consume_list)
+    result = bind_positional_only(reflected_parameter, parsed_arguments)
 
-    assert result == "value"
-    assert consume_list == [True]
+    assert result.value == "value"
 
 
 def test_bind_positional_or_keyword():

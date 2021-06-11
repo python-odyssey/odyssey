@@ -116,8 +116,6 @@ def get_regex_string(pattern_style):
     ):
         name_count = r"{2,}"
 
-    print(flag_patterns)
-
     if flag_patterns:
         flag_pattern = "(?:" + "|".join(flag_patterns) + ")"
     else:
@@ -132,7 +130,7 @@ def get_regex_string(pattern_style):
         assignment_patterns.append(colon)
 
     if assignment_patterns:
-        assignment_pattern = "[" + "|".join(assignment_patterns) + "](?P<value>.*)"
+        assignment_pattern = "(?:[" + "|".join(assignment_patterns) + "](?P<value>.*))?"
     else:
         assignment_pattern = ""
 
@@ -150,8 +148,12 @@ def get_compiled_regex(pattern_style):
 
 def match_argument(compiled_regex, argument_string):
     match = compiled_regex.match(argument_string)
-    groupdict = match.groupdict()
-    return [groupdict]
+    if match:
+        groupdict = match.groupdict()
+        if "value" in groupdict and groupdict["value"] is None:
+            del groupdict["value"]
+        return [groupdict]
+    return [{"value": argument_string}]
 
 
 def match(pattern_style, argument_list):

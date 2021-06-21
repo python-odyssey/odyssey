@@ -40,25 +40,20 @@ def test_double_dash_flag():
 
 
 def test_default_pattern_style():
-    arguments = ["--first-flag=first_value", "--second-flag", "--third-flag", "second_value", "third_value"]
+    arguments = [
+        "--first-flag=first_value",
+        "--second-flag",
+        "--third-flag",
+        "second_value",
+        "third_value",
+    ]
     pattern = PatternStyle.DEFAULT
     expected = [
-        {
-            "name": "first-flag",
-            "value": "first_value"
-        },
-        {
-            "name": "second-flag"
-        },
-        {
-            "name": "third-flag"
-        },
-        {
-            "value": "second_value"
-        },
-        {
-            "value": "third_value"
-        },
+        {"name": "first-flag", "value": "first_value"},
+        {"name": "second-flag"},
+        {"name": "third-flag"},
+        {"value": "second_value"},
+        {"value": "third_value"},
     ]
 
     result = match(pattern, arguments)

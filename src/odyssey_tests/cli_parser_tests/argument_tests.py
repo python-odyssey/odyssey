@@ -1,6 +1,7 @@
 import odyssey.cli_parser.pattern as pattern
 import odyssey.cli_parser.argument as argument
 
+
 def test_parse():
     arguments = [
         "dragons",
@@ -49,7 +50,12 @@ def test_parse_with_slashes():
         "/second-assignment:second",
     ]
 
-    style = pattern.PatternStyle.NAME_LOWERCASE_LETTERS | pattern.PatternStyle.NAME_DASHES | pattern.PatternStyle.SINGLE_SLASH_FLAG | pattern.PatternStyle.COLON_ASSIGNMENT
+    style = (
+        pattern.PatternStyle.NAME_LOWERCASE_LETTERS
+        | pattern.PatternStyle.NAME_DASHES
+        | pattern.PatternStyle.SINGLE_SLASH_FLAG
+        | pattern.PatternStyle.COLON_ASSIGNMENT
+    )
     matched_arguments = pattern.match(style, arguments)
     parsed_arguments = argument.make_argument_list(matched_arguments)
 

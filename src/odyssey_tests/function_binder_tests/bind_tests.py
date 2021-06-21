@@ -1,4 +1,4 @@
-from odyssey.bind import (
+from odyssey.function_binder.bind import (
     bind_positional_only,
     bind_positional_or_keyword,
     bind_var_positional,
@@ -6,13 +6,13 @@ from odyssey.bind import (
     bind_var_keyword,
     bind_arguments,
 )
-from odyssey.reflect import (
+from odyssey.python_reflector.reflect import (
     reflect_function,
     ReflectedParameter,
     ParameterKind,
 )
-from odyssey.parse import parse_arguments
-from odyssey_tests.bind_test_data import (
+from odyssey.cli_parser import parse_arguments
+from odyssey_tests.function_binder_tests.bind_test_data import (
     positional_only_parameter,
     positional_or_keyword_parameter,
     var_positional_parameter,
@@ -21,75 +21,68 @@ from odyssey_tests.bind_test_data import (
     simple_function,
     parameter_type_function,
 )
+from odyssey.name_resolver.resolve import NameResolver
+
+
+RESOLVER = NameResolver()
 
 
 def test_bind_positional_only():
     reflected_parameter = positional_only_parameter
     arguments = ["value"]
     parsed_arguments = parse_arguments(arguments)
-    consume_list = [False]
 
-    result = bind_positional_only(reflected_parameter, parsed_arguments, consume_list)
+    result = bind_positional_only(reflected_parameter, parsed_arguments)
 
-    assert result == "value"
-    assert consume_list == [True]
+    assert result.value == "value"
 
 
 def test_bind_positional_or_keyword():
     reflected_parameter = positional_or_keyword_parameter
     arguments = ["--first-parameter=value"]
     parsed_arguments = parse_arguments(arguments)
-    consume_list = [False]
 
-    result = bind_positional_or_keyword(
-        reflected_parameter, parsed_arguments, consume_list
-    )
+    result = bind_positional_or_keyword(reflected_parameter, parsed_arguments, RESOLVER)
 
-    assert result == "value"
-    assert consume_list == [True]
+    assert result.value == "value"
 
 
 def test_bind_var_positional():
     reflected_parameter = var_positional_parameter
     arguments = ["value1", "value2", "value3"]
     parsed_arguments = parse_arguments(arguments)
-    consume_list = [False, False, False]
 
-    result = bind_var_positional(reflected_parameter, parsed_arguments, consume_list)
+    results = bind_var_positional(reflected_parameter, parsed_arguments)
 
-    assert result == ["value1", "value2", "value3"]
-    assert consume_list == [True, True, True]
+    assert [result.value for result in results] == ["value1", "value2", "value3"]
 
 
 def test_bind_keyword_only():
     reflected_parameter = keyword_only_parameter
-    arguments = ["--name=value"]
+    arguments = ["--keyword-only-parameter=value"]
     parsed_arguments = parse_arguments(arguments)
-    consume_list = [False]
 
-    result = bind_keyword_only(reflected_parameter, parsed_arguments, consume_list)
+    result = bind_keyword_only(reflected_parameter, parsed_arguments, RESOLVER)
 
-    assert result == ("name", "value")
-    assert consume_list == [True]
+    assert result.value == "value"
 
 
 def test_bind_var_keyword():
     reflected_parameter = var_keyword_parameter
-    arguments = ["--name1=value1", "--name2=value2"]
+    arguments = ["--first-name=value1", "--second-name=value2"]
     parsed_arguments = parse_arguments(arguments)
-    consume_list = [False, False]
+    results = bind_var_keyword(reflected_parameter, parsed_arguments, RESOLVER)
 
-    result = bind_var_keyword(reflected_parameter, parsed_arguments, consume_list)
-
-    assert result == {"name1": "value1", "name2": "value2"}
-    assert consume_list == [True, True]
+    assert {
+        name: bound_parameter.value for name, bound_parameter in results.items()
+    } == {"first_name": "value1", "second_name": "value2"}
 
 
 def test_bind_arguments_empty():
     expected = None
 
     reflected_function = reflect_function(simple_function)
-    bound_function = bind_arguments(reflected_function, [])
+    bound_function = bind_arguments(reflected_function, [], RESOLVER)
     result = bound_function.invoke()
 
     assert expected == result
@@ -112,7 +105,8 @@ def test_bind_parameter_type_function():
 
     reflected_function = reflect_function(parameter_type_function)
     parsed_arguments = parse_arguments(arguments)
-    bound_function = bind_arguments(reflected_function, parsed_arguments)
+    print(parsed_arguments)
+    bound_function = bind_arguments(reflected_function, parsed_arguments, RESOLVER)
     result = bound_function.invoke()
 
     assert expected == result

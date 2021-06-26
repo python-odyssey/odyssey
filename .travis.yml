@@ -8,11 +8,11 @@ jobs:
 install:
   - if [ $TRAVIS_CPU_ARCH = arm64 ]; then python -m pip install --upgrade pip; fi
   - bin/install_poetry.sh
-  - bin/install_dependencies.sh
+  - source $HOME/.poetry/env && bin/install_dependencies.sh
 script:
-  - bin/run_pytest.sh
-  - bin/build.sh
-  - bin/build_executable.sh
+  - source $HOME/.poetry/env && bin/run_pytest.sh
+  - source $HOME/.poetry/env && bin/build.sh
+  - source $HOME/.poetry/env && bin/build_executable.sh
 after_success:
   - coveralls
 notifications:

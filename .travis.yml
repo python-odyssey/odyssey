@@ -6,7 +6,8 @@ jobs:
     env:
       - PYTHON_EXECUTABLE=python3
 install:
-  - if [ $TRAVIS_CPU_ARCH = arm64 ]; then python -m pip install --upgrade pip; fi
+  - bin/install_python.sh
+  - bin/activate_python.sh
   - bin/install_poetry.sh
   - source $HOME/.poetry/env && bin/install_dependencies.sh
 script:

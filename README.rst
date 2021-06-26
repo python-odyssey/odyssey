@@ -22,23 +22,23 @@ odyssey is a cross-platform cross-architecture cross-scm workspace management to
     :target: https://pypi.org/project/odyssey/
     :alt: PyPI
 
-.. image:: https://img.shields.io/travis/com/python-odyssey/odyssey/master?label=travis
+.. image:: https://img.shields.io/travis/com/python-odyssey/odyssey/main?label=travis
     :target: https://travis-ci.com/python-odyssey/odyssey
     :alt: Travis
 
-.. image:: https://img.shields.io/appveyor/build/GodwinneLorayne/odyssey/master?label=appveyor
+.. image:: https://img.shields.io/appveyor/build/GodwinneLorayne/odyssey/main?label=appveyor
     :target: https://ci.appveyor.com/project/GodwinneLorayne/odyssey
     :alt: AppVeyor
 
-.. image:: https://img.shields.io/circleci/build/github/python-odyssey/odyssey/master?label=circleci
-    :target: https://circleci.com/gh/python-odyssey/odyssey/tree/master
+.. image:: https://img.shields.io/circleci/build/github/python-odyssey/odyssey/main?label=circleci
+    :target: https://circleci.com/gh/python-odyssey/odyssey/tree/main
     :alt: CircleCI
 
-.. image:: https://img.shields.io/github/workflow/status/python-odyssey/odyssey/Python%20package/master?label=github
+.. image:: https://img.shields.io/github/workflow/status/python-odyssey/odyssey/Python%20package/main?label=github
     :target: https://github.com/python-odyssey/odyssey/actions?query=workflow%3A%22Python+package%22
     :alt: GitHub Workflow
 
-.. image:: https://img.shields.io/codeship/72420e60-85ba-0138-73ce-161eccafeee2/master?label=codeship
+.. image:: https://img.shields.io/codeship/72420e60-85ba-0138-73ce-161eccafeee2/main?label=codeship
     :target: https://app.codeship.com/projects/72420e60-85ba-0138-73ce-161eccafeee2
     :alt: Codeship
 
@@ -53,8 +53,8 @@ odyssey is a cross-platform cross-architecture cross-scm workspace management to
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
     :target: https://github.com/psf/black
 
-.. image:: https://coveralls.io/repos/github/python-odyssey/odyssey/badge.svg?branch=master
-    :target: https://coveralls.io/github/python-odyssey/odyssey?branch=master
+.. image:: https://coveralls.io/repos/github/python-odyssey/odyssey/badge.svg?branch=main
+    :target: https://coveralls.io/github/python-odyssey/odyssey?branch=main
 
 .. image:: https://img.shields.io/github/languages/code-size/python-odyssey/odyssey
     :alt: GitHub code size in bytes

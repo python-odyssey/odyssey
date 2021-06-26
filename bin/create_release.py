@@ -14,12 +14,12 @@ PYPROJECT_TOML_PATH = os.path.abspath(
 )
 
 
-def assert_clean_master():
+def assert_clean_main():
     repository = git.Repo(PROJECT_ROOT_PATH)
     active_branch = repository.active_branch
     assert (
-        active_branch.name == "master"
-    ), f"Repository on branch {active_branch.name} is not currently on the master branch!"
+        active_branch.name == "main"
+    ), f"Repository on branch {active_branch.name} is not currently on the main branch!"
     assert not repository.is_dirty(
         index=True, working_tree=True, untracked_files=True
     ), "Repository contents are dirty!"
@@ -65,7 +65,7 @@ def commit_and_tag_pyproject_toml(bump_string, old_version, new_version):
     repository.create_tag(tag_name, tag_message)
 
 
-assert_clean_master()
+assert_clean_main()
 pyproject_toml = get_current_project_version()
 current_project_version = pyproject_toml["tool"]["poetry"]["version"]
 assert_current_project_version_semver(current_project_version)

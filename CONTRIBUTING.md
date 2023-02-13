@@ -16,11 +16,21 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) fo
 
 See [venv](https://docs.python.org/3/library/venv.html) for more information.
 
+The integrity of the virtual environment and not polluting the rest of your system with packages is essential. We want our tooling to get us the correct set of packages every time we:
+
+- clone the respository
+- checkout a different commit
+- add/remove/upgrade a dependency
+
 Create a virtual environment using `python -m venv .venv --upgrade-deps`
 
 Activate the virtual environment based on platform. Some examples:
 
 - Windows with pwsh: `./.venv/Scripts/Activate.ps1`
+
+Install `pip-tools` using `pip install -r src/requirements/pip-tools.txt`
+
+Install remaining dependencies using `pip-sync`
 
 ### Recommended Workflow
 

@@ -1,0 +1,24 @@
+[project]
+name = "odyssey"
+version = "2.0.0"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE" }
+maintainers = [{ name = "Justin Sharma", email = "justin.elite@gmail.com" }]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest"]
+cli = []
+gui = []
+
+[project.urls]
+repository = "https://github.com/python-odyssey/odyssey.git"
+changelog = "https://github.com/python-odyssey/odyssey/blob/master/CHANGELOG.md"
+
+[project.scripts]
+odyssey = "odyssey.odyssey_cli.__main__:main"
+odyssey-cli = "odyssey.odyssey_cli.__main__:main"
+
+[project.gui-scripts]
+odyssey-gui = "odyssey.odyssey_gui.__main__:main"

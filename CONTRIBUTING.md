@@ -27,3 +27,11 @@ Activate the virtual environment based on platform. Some examples:
 The repository comes with some configuration for Visual Studio Code. You can use any IDE you'd like, but may find working in VSCode an easier path in this repository.
 
 Similarly, you can use any Operating System environment to contribute, but may find it easier to use the same one(s) as existing contributors.
+
+### Line Endings
+
+Line endings matter more than you think. For some good reading see [Mind the End of Your Line](https://adaptivepatchwork.com/2012/03/01/mind-the-end-of-your-line/).
+
+In this repository we stick to LF as much as possible. When adding new files, consider the line endings. When editing existing files, if your changes switch the line endings (which may not be obvious depending on your IDE settings), then in a Pull Request your entire file will be seen as a diff.
+
+We have configured specific settings in `.gitattributes` which should apply to all files in the repository.

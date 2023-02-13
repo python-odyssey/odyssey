@@ -1,5 +1,0 @@
-alpine:
-    build:
-      image: codeship/alpine
-      context: .
-      dockerfile: .codeship/alpine/Dockerfile

@@ -1,29 +1,7 @@
-.travis.yml text eol=lf
-.gitignore text eol=lf
-.appveyor.yml text eol=crlf
-codeship-services.yml text eol=lf
-codeship-steps.yml text eol=lf
-poetry.lock text eol=auto
-pyproject.toml text eol=auto
-.circleci/config.yml text eol=lf
-.github/workflows/pull_request_notifications.yml text eol=lf
-.github/workflows/python-package.yml text eol=lf
+# input - CRLF -> LF -> Database, No Conversion -> Working Directory
+*       text=input
 
-*.bash     text eol=lf
-*.fish     text eol=lf
-*.sh       text eol=lf
-*.py       text eol=lf
-*.bat      text eol=crlf
-*.cmd      text eol=crlf
-*.ps1      text eol=crlf
-
-*.json     text
-*.toml     text
-*.xml      text
-*.yaml     text
-*.yml      text
-
-# Exclude files from exporting
+# Exclude files from git archive (See https://git-scm.com/docs/git-archive)
 .gitattributes export-ignore
 .gitignore     export-ignore
 .gitkeep       export-ignore
